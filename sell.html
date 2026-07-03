@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AGEnt-YeLL の売物件・買取物件一覧。随時更新予定。最新の物件情報はLINEでお知らせします。">
+    <title>売物件・買取物件一覧｜AGEnt-YeLL エージェントエール</title>
+    <link rel="canonical" href="https://agentyell.jp/sell/">
+    <script async src="https://www.clarity.ms/tag/x9e7w60u34"></script>
+    
+    <style>
+        :root {
+            --navy: #1C3B8C;
+            --pink: #E84080;
+            --cream: #F8F5F0;
+            --gray-light: #F5F5F5;
+            --gray-text: #666666;
+            --gray-disabled: #D0D0D0;
+            --text-dark: #333333;
+            --border-gray: #E0E0E0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+        
+        /* Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-gray);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        
+        .header-contact {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .header-tel {
+            font-size: 14px;
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            font-size: 12px;
+        }
+        
+        .lang-switcher a {
+            color: var(--gray-text);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        
+        .lang-switcher a:hover {
+            background-color: var(--gray-light);
+            color: var(--navy);
+        }
+        
+        nav {
+            display: flex;
+            gap: 24px;
+            margin-left: 40px;
+        }
+        
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover {
+            color: var(--pink);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: var(--gray-text);
+            margin-bottom: 32px;
+        }
+        
+        /* Notice Banner */
+        .notice-banner {
+            background-color: var(--cream);
+            border: 1px solid #E0C6B0;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        
+        .notice-banner p {
+            font-size: 15px;
+            color: var(--navy);
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        /* Property Cards Grid */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .property-card {
+            background-color: var(--gray-light);
+            border: 2px solid var(--gray-disabled);
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .property-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--gray-light) 0%, #E8E8E8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-disabled);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .property-details {
+            padding: 20px;
+        }
+        
+        .property-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+        
+        .property-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--gray-text);
+            margin-bottom: 16px;
+        }
+        
+        .property-specs span {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .property-cta {
+            display: block;
+            text-align: center;
+            background-color: var(--gray-disabled);
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: not-allowed;
+        }
+        
+        /* CTA Section: LINE Update */
+        .cta-line-section {
+            background: linear-gradient(135deg, var(--navy) 0%, #142850 100%);
+            border-radius: 8px;
+            padding: 40px 32px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #ffffff;
+        }
+        
+        .cta-line-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .cta-line-section p {
+            font-size: 15px;
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+        
+        .cta-line-button {
+            display: inline-block;
+            background-color: #00B900;
+            color: #ffffff;
+            padding: 14px 36px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-line-button:hover {
+            background-color: #009500;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 185, 0, 0.3);
+        }
+        
+        /* Buyer Page Link Section */
+        .buyer-section {
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            padding: 40px 32px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .buyer-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+        
+        .buyer-section p {
+            font-size: 15px;
+            color: var(--gray-text);
+            margin-bottom: 24px;
+        }
+        
+        .buyer-button {
+            display: inline-block;
+            background-color: var(--pink);
+            color: #ffffff;
+            padding: 12px 32px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .buyer-button:hover {
+            background-color: #c93366;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 64, 128, 0.3);
+        }
+        
+        /* Float Button */
+        .float-btn-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 999;
+        }
+        
+        body.scroll-down .float-btn-container {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .float-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .float-btn-line {
+            background-color: #00B900;
+        }
+        
+        .float-btn-line:hover {
+            background-color: #009500;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 185, 0, 0.3);
+        }
+        
+        .float-btn-inquiry {
+            background-color: var(--pink);
+        }
+        
+        .float-btn-inquiry:hover {
+            background-color: #c93366;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 64, 128, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: #ffffff;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border-gray);
+            margin-top: 60px;
+        }
+        
+        footer p {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        
+        footer a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Data Attributes */
+        [data-section] {
+            /* For analytics tracking */
+        }
+        
+        [data-track] {
+            /* For analytics tracking */
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 800px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 12px 16px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .header-contact {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            main {
+                padding: 24px 16px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .notice-banner {
+                padding: 16px 12px;
+            }
+            
+            .notice-banner p {
+                font-size: 14px;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .cta-line-section {
+                padding: 24px 16px;
+            }
+            
+            .cta-line-section h2 {
+                font-size: 18px;
+            }
+            
+            .cta-line-section p {
+                font-size: 13px;
+            }
+            
+            .buyer-section {
+                padding: 24px 16px;
+            }
+            
+            .float-btn-container {
+                bottom: 16px;
+                right: 16px;
+            }
+            
+            .float-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 10px;
+            }
+        }
+    </style>
+    
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "AGEnt-YeLL",
+                "item": "https://agentyell.jp/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "売物件一覧",
+                "item": "https://agentyell.jp/sell/"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- JSON-LD: ItemList (Empty) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "ItemList",
+        "itemListElement": []
+    }
+    </script>
+</head>
+<body data-section="sell-list">
+    <!-- Header -->
+    <header>
+        <a href="/" class="logo">AGEnt-YeLL</a>
+        <nav>
+            <a href="/">トップ</a>
+            <a href="/area/">対応エリア</a>
+            <a href="/buyer/">買いたい方</a>
+            <a href="/about/">会社情報</a>
+        </nav>
+        <div class="header-contact">
+            <a href="tel:07270028043" class="header-tel">072-702-8043</a>
+            <div class="lang-switcher">
+                <a href="/en/sell/">EN</a>
+                <a href="/zh/sell/">中文</a>
+                <a href="/ko/sell/">한국어</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main data-track="sell-content">
+        <h1>売物件・買取物件一覧</h1>
+        <p class="subtitle">AGEnt-YeLL で現在販売・買取中の物件です。</p>
+        
+        <!-- Notice Banner -->
+        <div class="notice-banner" data-section="notice">
+            <p>⏱️ 現在公開中の物件はありません。随時更新予定です。</p>
+        </div>
+        
+        <!-- AI Disclaimer -->
+        <div style="background:#fff8e7;border-radius:6px;padding:9px 13px;font-size:10px;color:#854F0B;line-height:1.6;margin-bottom:11px;border-left:3px solid #e0c848;">※AI査定は統計的概算値であり不動産鑑定評価ではありません</div>
+        
+        <!-- Property Cards Grid (Placeholder) -->
+        <section class="properties-grid" data-section="property-cards">
+            <div class="property-card">
+                <div class="property-image">物件写真</div>
+                <div class="property-details">
+                    <div class="property-price">準備中</div>
+                    <div class="property-specs">
+                        <span><strong>エリア</strong> <span>準備中</span></span>
+                        <span><strong>価格</strong> <span>準備中</span></span>
+                        <span><strong>面積</strong> <span>準備中</span></span>
+                        <span><strong>種別</strong> <span>準備中</span></span>
+                    </div>
+                    <a href="#" class="property-cta">詳細を見る（準備中）</a>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <div class="property-image">物件写真</div>
+                <div class="property-details">
+                    <div class="property-price">準備中</div>
+                    <div class="property-specs">
+                        <span><strong>エリア</strong> <span>準備中</span></span>
+                        <span><strong>価格</strong> <span>準備中</span></span>
+                        <span><strong>面積</strong> <span>準備中</span></span>
+                        <span><strong>種別</strong> <span>準備中</span></span>
+                    </div>
+                    <a href="#" class="property-cta">詳細を見る（準備中）</a>
+                </div>
+            </div>
+            
+            <div class="property-card">
+                <div class="property-image">物件写真</div>
+                <div class="property-details">
+                    <div class="property-price">準備中</div>
+                    <div class="property-specs">
+                        <span><strong>エリア</strong> <span>準備中</span></span>
+                        <span><strong>価格</strong> <span>準備中</span></span>
+                        <span><strong>面積</strong> <span>準備中</span></span>
+                        <span><strong>種別</strong> <span>準備中</span></span>
+                    </div>
+                    <a href="#" class="property-cta">詳細を見る（準備中）</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA: LINE Update Notification -->
+        <section class="cta-line-section" data-section="cta-line-update">
+            <h2>物件情報をいち早く受け取る</h2>
+            <p>最新の売物件・買取物件情報はLINEでお知らせします。<br>友だち登録して、逃さずチェック。</p>
+            <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz" class="cta-line-button" data-track="cta-line-register">LINEで友だち登録</a>
+        </section>
+        
+        <!-- CTA: Buyer Page -->
+        <section class="buyer-section" data-section="cta-buyer">
+            <h2>買いたい方向けページ</h2>
+            <p>希望の物件をお探しの方はこちら。AGEnt-YeLL のネットワークから、あなたにぴったりの物件をご紹介します。</p>
+            <a href="/buyer/" class="buyer-button" data-track="cta-to-buyer">買いたい方へ</a>
+        </section>
+        
+        <!-- reinfolib Attribution -->
+        <div style="font-size:10px;color:#888;margin-top:16px;padding-top:12px;border-top:1px solid #ddd;text-align:center;">データ出典：国土交通省 不動産情報ライブラリ（reinfolib）<a href="https://www.reinfolib.mlit.go.jp/" target="_blank" rel="noopener" style="color:#1C3B8C;text-decoration:underline;">https://www.reinfolib.mlit.go.jp/</a></div>
+    </main>
+<div style="font-size:10px;color:#888;margin-top:16px;padding-top:12px;border-top:1px solid #ddd;text-align:center;">データ出典：国土交通省 不動産情報ライブラリ（reinfolib）<a href="https://www.reinfolib.mlit.go.jp/" target="_blank" rel="noopener" style="color:#1C3B8C;text-decoration:underline;">https://www.reinfolib.mlit.go.jp/</a></div>
+    
+    <!-- Float Button Container -->
+    <div class="float-btn-container">
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz" class="float-btn float-btn-line" data-track="float-line" title="LINEで相談">LINE<br>相談</a>
+        <a href="https://agentyell.jp/form/lp/" class="float-btn float-btn-inquiry" data-track="float-inquiry" title="無料査定">無料<br>査定</a>
+    </div>
+    
+    <!-- Footer -->
+    <footer data-section="footer">
+        <p>&copy; 2024 AGEnt-YeLL. 兵庫県知事（宅地建物取引業）第011512号</p>
+        <p><a href="https://g.page/r/CRshGtYBdqaQEAE/review">Google ビジネスプロフィール</a></p>
+    </footer>
+    
+    <script>
+        // Float Button: Show/Hide on Scroll
+        window.addEventListener('scroll', () => {
+            const container = document.querySelector('.float-btn-container');
+            if (window.scrollY >= 400) {
+                document.body.classList.add('scroll-down');
+            } else {
+                document.body.classList.remove('scroll-down');
+            }
+        });
+    </script>
+</body>
+</html>

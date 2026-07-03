@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ja" class="ja">
+
+<!-- Clarity -->
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","x9e7w60u34");</script>
+
+<!-- float-btn -->
+<div class="float" id="float">
+  <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz" class="float-btn float-ln" target="_blank" rel="noopener">LINE</a>
+  <a href="/form/" class="float-btn float-pk" data-track="float-cta">査定する</a>
+</div>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI不動産無料査定 | 川西市・猪名川町・大阪市淀川区 | AGEnt-YeLL</title>
+<meta name="description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。住所だけでも必ず概算額を提示。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://www.agentyell.jp/form/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#1C3B8C; --navy-d:#0f2456; --navy-l:#2d4aa8; --navy-pale:#EEF2FB;
+  --pink:#E84080; --pink-l:#f25a98;
+  --white:#fff; --off:#F8F6F2; --warm:#E8E4DF;
+  --text:#1a1a1a; --muted:#555; --light:#888; --border:#DDD8D0;
+  --green:#0a6e1a; --amber:#854F0B;
+  --serif:'DM Serif Display',serif; --sans:'Noto Sans JP',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1); --r:8px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); color:var(--text); background:#f4f6fb; line-height:1.85; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+
+/* HEADER */
+.hdr{ background:rgba(255,255,255,.97); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:56px; position:sticky; top:0; z-index:100; }
+.hdr-left{ display:flex; align-items:center; gap:24px; }
+.hlogo img{ height:26px; width:auto; }
+.hdr-right{ display:flex; align-items:center; gap:14px; }
+.htel{ font-size:14px; font-weight:700; color:var(--navy); }
+.hdr-cta{ background:var(--navy); color:#fff; font-size:12px; font-weight:700; padding:7px 14px; border-radius:5px; }
+
+/* BREADCRUMB */
+.bc{ background:var(--off); border-bottom:1px solid var(--border); padding:9px 5%; }
+.bc ol{ list-style:none; display:flex; flex-wrap:wrap; align-items:center; gap:4px; max-width:1080px; margin:0 auto; }
+.bc li{ font-size:12px; color:var(--light); display:flex; align-items:center; }
+.bc li a{ color:var(--navy); }
+.bc li+li::before{ content:'/'; color:var(--border); margin:0 6px; }
+
+/* WRAP */
+.wrap{ max-width:560px; margin:0 auto; padding:28px 14px 80px; }
+
+/* PAGE HEAD */
+.page-head{ text-align:center; margin-bottom:28px; }
+.page-title{ font-family:var(--serif); font-size:clamp(22px,5vw,30px); color:var(--navy-d); line-height:1.4; margin-bottom:8px; }
+.page-sub{ font-size:13px; color:var(--muted); line-height:1.7; }
+.tags{ display:flex; justify-content:center; gap:7px; flex-wrap:wrap; margin-top:10px; }
+.tag{ font-size:10px; font-weight:700; padding:3px 10px; border-radius:12px; background:#EEF2FB; color:var(--navy); border:1px solid #c8d4ee; }
+
+/* PRECISION BAR */
+.prec-box{ background:var(--white); border:0.5px solid var(--border); border-radius:10px; padding:13px 16px; margin-bottom:14px; }
+.prec-label{ font-size:11px; font-weight:500; color:var(--muted); margin-bottom:7px; display:flex; justify-content:space-between; }
+.prec-track{ height:8px; background:#e8e8ee; border-radius:4px; overflow:hidden; }
+.prec-fill{ height:100%; background:linear-gradient(90deg,var(--pink),var(--navy-l)); border-radius:4px; transition:width .4s var(--ease); }
+.prec-items{ display:grid; grid-template-columns:repeat(4,1fr); gap:5px; margin-top:9px; }
+.pi{ font-size:9px; color:var(--light); text-align:center; padding:4px; border-radius:4px; border:1px solid var(--border); background:#fafafa; transition:all .2s; }
+.pi.done{ background:#EEF2FB; color:var(--navy); border-color:var(--navy); font-weight:500; }
+
+/* CARD */
+.card{ background:var(--white); border-radius:12px; border:0.5px solid var(--border); padding:20px 18px; margin-bottom:10px; }
+.sec-title{ font-size:13px; font-weight:700; color:var(--navy-d); margin-bottom:14px; display:flex; align-items:center; gap:7px; }
+.sec-title::before{ content:''; display:block; width:3px; height:16px; background:var(--pink); border-radius:2px; }
+
+/* FORM */
+.field{ margin-bottom:13px; }
+.field:last-child{ margin-bottom:0; }
+label{ display:flex; align-items:center; gap:5px; font-size:11px; font-weight:500; color:var(--muted); margin-bottom:4px; }
+.req{ color:var(--pink); font-size:10px; }
+.opt{ font-size:9px; background:#f0f0f4; color:var(--muted); padding:1px 5px; border-radius:3px; }
+.hint{ font-size:10px; color:var(--light); margin-top:3px; line-height:1.4; }
+
+input, select{ 
+  width:100%; border:1px solid var(--border); border-radius:8px; padding:10px 12px; 
+  font-size:14px; font-family:inherit; color:var(--text); background:var(--white); 
+  outline:none; transition:border-color .15s; -webkit-appearance:none; 
+}
+input:focus, select:focus{ border-color:var(--navy); box-shadow:0 0 0 3px rgba(28,59,140,.07); }
+
+select{ 
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center; padding-right:32px;
+}
+
+.two{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.three{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+
+.zip-row{ display:flex; gap:8px; }
+.zip-row input{ flex:1; }
+.zip-btn{ padding:10px 14px; background:var(--navy); color:#fff; border:none; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap; font-family:inherit; transition:background .2s; }
+.zip-btn:hover{ background:var(--navy-l); }
+.zip-msg{ font-size:10px; margin-top:3px; }
+.zip-msg.ok{ color:var(--green); }
+.zip-msg.err{ color:#c0392b; }
+
+/* EMAIL TOGGLE - 任意選択式 */
+.email-toggle{ background:#EEF2FB; border-radius:8px; padding:11px 14px; cursor:pointer; display:flex; align-items:center; gap:10px; border:1.5px solid #DDD8D0; transition:all .15s; user-select:none; }
+.email-toggle.off{ border-color:#DDD8D0; }
+.tcheck{ width:18px; height:18px; border:1.5px solid var(--navy); border-radius:4px; display:flex; align-items:center; justify-content:center; background:var(--white); flex-shrink:0; transition:background .15s; }
+.tcheck::after{ display:none; }
+.tcheck.off{ background:var(--white); border-color:#DDD8D0; }
+.tcheck:not(.off){ background:var(--navy); }
+.tcheck:not(.off)::after{ content:'✓'; color:#fff; font-size:11px; font-weight:700; display:block; }
+.toggle-text{ font-size:12px; color:var(--navy); font-weight:500; line-height:1.3; }
+.toggle-sub{ font-size:10px; color:var(--muted); margin-top:1px; }
+.email-fields{ display:block; margin-top:11px; }
+.email-fields.hide{ display:none; }
+
+/* ESCAPE HATCH */
+.escape-box{ background:var(--off); border-radius:8px; padding:14px; margin-bottom:14px; border:1px solid var(--border); }
+.escape-title{ font-size:12px; font-weight:700; color:var(--navy-d); margin-bottom:8px; }
+.escape-options{ display:flex; flex-direction:column; gap:8px; }
+.escape-btn{ display:flex; align-items:center; justify-content:center; gap:8px; padding:11px; border:1.5px solid var(--border); border-radius:8px; background:var(--white); cursor:pointer; font-size:12px; font-weight:600; color:var(--navy); transition:all .15s; }
+.escape-btn:hover{ border-color:var(--navy); background:#f8f9fb; }
+.escape-btn.line{ color:#00b900; border-color:#00b900; }
+.escape-btn.line:hover{ background:#f0fff0; }
+
+/* SUBMIT */
+.btn-submit{ width:100%; padding:14px; border:none; border-radius:8px; background:var(--pink); color:#fff; font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; letter-spacing:.03em; margin-top:6px; transition:filter .2s; }
+.btn-submit:hover{ filter:brightness(.92); }
+.submit-note{ text-align:center; font-size:10px; color:var(--muted); margin-top:7px; line-height:1.5; }
+
+/* TRUST */
+.trust{ background:var(--navy-d); border-radius:10px; padding:11px 16px; text-align:center; font-size:10px; color:rgba(255,255,255,.55); margin-bottom:14px; line-height:1.7; }
+.trust strong{ color:#fff; }
+
+/* LOADING */
+.loading{ text-align:center; padding:40px; display:none; }
+.loading.show{ display:block; }
+.spinner{ width:34px; height:34px; border:3px solid #dde3f0; border-top-color:var(--navy); border-radius:50%; animation:spin .7s linear infinite; margin:0 auto 12px; }
+@keyframes spin{ to{ transform:rotate(360deg) } }
+.loading-text{ font-size:13px; color:var(--muted); }
+
+/* RESULT */
+.result-wrap{ display:none; }
+.result-wrap.show{ display:block; }
+.disclaimer{ background:#fff8e7; border-radius:6px; padding:9px 13px; font-size:10px; color:var(--amber); line-height:1.6; margin-bottom:11px; border-left:3px solid #e0c848; }
+
+/* AMOUNT CARD */
+.amount-card{ background:var(--white); border-radius:12px; border:2px solid var(--navy); padding:22px 18px; margin-bottom:10px; }
+.ac-label{ font-size:10px; font-weight:700; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:5px; }
+.ac-value{ font-family:var(--serif); font-size:32px; font-weight:700; color:var(--navy); line-height:1.2; margin-bottom:10px; }
+.ac-value small{ font-size:16px; color:var(--muted); font-family:var(--sans); font-weight:400; }
+.range-bars{ display:grid; grid-template-columns:auto 1fr auto; gap:8px; align-items:center; font-size:11px; color:var(--muted); }
+.range-bar{ height:8px; background:#e8e8ee; border-radius:4px; overflow:hidden; }
+.range-bar-fill{ height:100%; background:linear-gradient(90deg,var(--pink),var(--navy-l)); }
+.prec-score{ margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+.ps-bar{ height:6px; background:#e8e8ee; border-radius:3px; overflow:hidden; margin-bottom:6px; }
+.ps-bar-fill{ height:100%; background:var(--pink); }
+.ps-note{ font-size:10px; color:var(--muted); line-height:1.5; }
+.r-meta{ font-size:10px; color:var(--muted); margin-top:10px; padding:10px; background:var(--off); border-radius:6px; line-height:1.6; }
+
+/* ACTIONS */
+.actions{ display:flex; flex-direction:column; gap:8px; }
+.action-btn{ padding:12px; border:1.5px solid var(--navy); border-radius:8px; background:var(--white); color:var(--navy); font-size:12px; font-weight:600; cursor:pointer; transition:all .15s; text-align:center; }
+.action-btn:hover{ background:var(--navy-pale); }
+.action-btn.primary{ background:var(--navy); color:#fff; border-color:var(--navy); }
+.action-btn.primary:hover{ background:var(--navy-l); }
+
+</style>
+
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="hlogo"><img src="/logo.svg" alt="AGEnt-YeLL"></div>
+  </div>
+  <div class="hdr-right">
+    <a href="tel:07270288043" class="htel">072-702-8043</a>
+  </div>
+</div>
+
+<div class="bc">
+  <ol>
+    <li><a href="/">ホーム</a></li>
+    <li>AI査定フォーム</li>
+  </ol>
+</div>
+
+<div class="wrap">
+
+  <div class="page-head">
+    <h1 class="page-title">AI不動産査定</h1>
+    <p class="page-sub">川西市・猪名川町・大阪市淀川区<br>10秒でカンタン査定</p>
+    <div class="tags">
+      <span class="tag">完全無料</span>
+      <span class="tag">売却義務なし</span>
+      <span class="tag">即時診断</span>
+    </div>
+  </div>
+
+  <div id="form-section">
+
+    <!-- 精度メーター -->
+    <div class="prec-box">
+      <div class="prec-label">
+        <span>入力精度</span>
+        <span id="prec-pct">0%</span>
+      </div>
+      <div class="prec-track">
+        <div class="prec-fill" id="prec-fill" style="width:0%"></div>
+      </div>
+      <div class="prec-items">
+        <div class="pi" id="pi-addr">住所</div>
+        <div class="pi" id="pi-land">土地</div>
+        <div class="pi" id="pi-bldg">建物</div>
+        <div class="pi" id="pi-age">築年</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sec-title">基本情報</div>
+
+      <!-- 物件種別 -->
+      <div class="field">
+        <label><span class="req">必須</span> 物件種別</label>
+        <select id="f-type" onchange="updatePrec()">
+          <option value="">選択してください</option>
+          <option value="一戸建">一戸建</option>
+          <option value="マンション">マンション</option>
+          <option value="土地">土地</option>
+          <option value="アパート">アパート</option>
+          <option value="ビル">ビル</option>
+          <option value="駐車場">駐車場</option>
+        </select>
+      </div>
+
+      <!-- 郵便番号検索 -->
+      <div class="field">
+        <label><span class="req">必須</span> 郵便番号（7桁）</label>
+        <div class="zip-row">
+          <input type="text" id="f-zip" placeholder="123-4567" maxlength="8" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9-]/g,'')">
+          <button type="button" class="zip-btn" onclick="doZipLookup()">住所検索</button>
+        </div>
+        <div class="zip-msg" id="zip-msg"></div>
+      </div>
+
+      <!-- 住所 -->
+      <div class="field" id="city-f" style="display:none;">
+        <label>市区町村</label>
+        <input type="text" id="f-city" readonly style="background:#f5f5f5;">
+      </div>
+
+      <div class="field" id="addr-f" style="display:none;">
+        <label>番地・その他</label>
+        <input type="text" id="f-addr" placeholder="例：1-2-3">
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="sec-title">詳細情報</div>
+
+      <!-- 土地面積（改善版） -->
+      <div class="field">
+        <label>土地面積 <span class="opt">任意</span></label>
+        <div class="two">
+          <input type="number" id="f-land" placeholder="100" min="0" step="0.1" onchange="updatePrec()">
+          <select id="f-land-unit" onchange="updatePrec()">
+            <option value="m2">m²</option>
+            <option value="tsubo">坪</option>
+          </select>
+        </div>
+        <div class="hint">単位を選択してから数値を入力してください</div>
+      </div>
+
+      <!-- 建物面積（改善版） -->
+      <div class="field">
+        <label>建物面積 <span class="opt">任意</span></label>
+        <div class="two">
+          <input type="number" id="f-bldg" placeholder="50" min="0" step="0.1" onchange="updatePrec()">
+          <select id="f-bldg-unit" onchange="updatePrec()">
+            <option value="m2">m²</option>
+            <option value="tsubo">坪</option>
+          </select>
+        </div>
+        <div class="hint">単位を選択してから数値を入力してください</div>
+      </div>
+
+      <!-- 築年数（プルダウン化） -->
+      <div class="field">
+        <label>築年数 <span class="opt">任意</span></label>
+        <div class="two">
+          <select id="f-age-era" onchange="updateAgeInput()">
+            <option value="">選択</option>
+            <option value="s">昭和</option>
+            <option value="h">平成</option>
+            <option value="r">令和</option>
+            <option value="w">西暦</option>
+          </select>
+          <input type="number" id="f-age-year" placeholder="63" min="1" max="150" onchange="updatePrec()" style="display:none;">
+        </div>
+        <div class="hint">年号と年数を選択すると精度UP</div>
+      </div>
+
+      <!-- 構造 -->
+      <div class="field">
+        <label>建物構造 <span class="opt">任意</span></label>
+        <select id="f-struct" onchange="updatePrec()">
+          <option value="">選択</option>
+          <option value="木造">木造</option>
+          <option value="RC">鉄筋コンクリート造</option>
+          <option value="S">鋼造</option>
+          <option value="ALC">ALC造</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+
+      <!-- コンディション -->
+      <div class="field">
+        <label>物件状態 <span class="opt">任意</span></label>
+        <select id="f-cond" onchange="updatePrec()">
+          <option value="">選択</option>
+          <option value="新築">新築</option>
+          <option value="良好">良好</option>
+          <option value="普通">普通</option>
+          <option value="要修繕">要修繕</option>
+          <option value="ボロボロ">ボロボロ</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- メール受け取り（任意 - ユーザー選択式） -->
+    <div class="card">
+      <div class="email-toggle" id="email-toggle" onclick="toggleEmail()">
+        <div class="tcheck" id="tcheck"></div>
+        <div>
+          <div class="toggle-text">査定結果をメールで受け取る</div>
+          <div class="toggle-sub">チェックで詳細情報入力欄が表示されます</div>
+        </div>
+      </div>
+
+      <div class="email-fields" id="email-fields">
+        <div class="field" style="margin-top:12px;">
+          <label><span class="req">必須</span> お名前</label>
+          <input type="text" id="f-name" placeholder="例：山田太郎" onchange="updatePrec()">
+        </div>
+        <div class="field">
+          <label><span class="req">必須</span> メールアドレス</label>
+          <input type="email" id="f-email" placeholder="example@gmail.com" onchange="updatePrec()">
+        </div>
+        <div class="field">
+          <label>電話番号 <span class="opt">任意</span></label>
+          <input type="tel" id="f-tel" placeholder="090-1234-5678">
+        </div>
+      </div>
+    </div>
+
+    <!-- エスケープハッチ -->
+    <div class="escape-box">
+      <div class="escape-title">↓ 難しい場合はこちら ↓</div>
+      <div class="escape-options">
+        <button type="button" class="escape-btn" onclick="callPhone()">
+          📞 電話で聞きながら入力（072-702-8043）
+        </button>
+        <button type="button" class="escape-btn line" onclick="sendViaLine()">
+          💬 LINEで入力途中の情報を送信
+        </button>
+      </div>
+    </div>
+
+    <div class="trust">
+      <strong>✓ 完全無料</strong> ｜ <strong>売却義務なし</strong> ｜ 査定だけでもOK
+    </div>
+
+    <button type="button" class="btn-submit" onclick="doAssess()">査定結果を表示</button>
+    <div class="submit-note">※住所だけでも概算額が出ます<br>情報が増えるほど精度が上がります</div>
+
+  </div>
+
+  <!-- ローディング -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">査定中です...</div>
+  </div>
+
+  <!-- 結果表示 -->
+  <div class="result-wrap" id="result-section">
+    <div class="disclaimer">
+      この査定額はAIが算出した参考値です。正確な評価は現地確認後にお知らせします。
+    </div>
+
+    <div class="amount-card">
+      <div class="ac-label">査定額（中央値）</div>
+      <div class="ac-value">
+        <span id="r-amount">-</span><small>円</small>
+      </div>
+      <div class="range-bars">
+        <span>低</span>
+        <div class="range-bar"><div class="range-bar-fill" id="r-bar"></div></div>
+        <span id="r-upper">-</span>
+      </div>
+      <div style="text-align:right;font-size:10px;color:var(--muted);margin-top:4px;">
+        <span id="r-lower">-</span> 〜
+      </div>
+
+      <div class="prec-score">
+        <div class="ps-bar"><div class="ps-bar-fill" id="r-prec-fill"></div></div>
+        <div class="ps-note" id="r-prec-note">-</div>
+      </div>
+
+      <div class="r-meta" id="r-meta"></div>
+    </div>
+
+    <div id="email-sent" style="display:none;background:#e8f5e9;border-radius:8px;padding:11px;font-size:11px;color:#2e7d32;text-align:center;margin-bottom:10px;">
+      ✓ メールアドレスを送信しました
+    </div>
+
+    <div class="actions">
+      <button type="button" class="action-btn primary" onclick="resetForm()">別の物件を査定</button>
+      <button type="button" class="action-btn" onclick="window.location.href='/'">ホームに戻る</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ====== GAS API エンドポイント ======
+// 以下の URL を自分の Google Apps Script デプロイ URL に置き換えてください
+// デプロイ URL の形式: https://script.google.com/macros/s/[SCRIPT_ID]/exec
+var GAS_URL='https://script.google.com/macros/s/AKfycbznHcSClJjF6sqtZpcuzamX5Az1TSvjYMVKP4UPSVOqK7FEQK6VFmyNT2Z_EHiW8JG0/exec'; // AGEnt-YeLL Assessment API
+
+var emailMode=false; // デフォルト OFF（ユーザーが選択可能）
+var precScore=0;
+
+// 初期化時にメールモード OFF + チェック非表示 + クエリパラメータ自動入力
+window.addEventListener('load',function(){
+  emailMode=false;
+  document.getElementById('tcheck').className='tcheck off';
+  document.getElementById('email-toggle').className='email-toggle off';
+  document.getElementById('email-fields').className='email-fields hide';
+  
+  // ◆ URLクエリパラメータを解析して自動入力
+  var params = new URLSearchParams(window.location.search);
+  var district = params.get('district');    // 地区名
+  var area = params.get('area');            // 土地面積
+  var estimate = params.get('estimate');    // 参考査定額
+  
+  // 土地面積を自動入力
+  if(area && !isNaN(area)){
+    document.getElementById('f-land').value = area;
+    document.getElementById('f-land-unit').value = 'm2';
+  }
+  
+  // 参考査定額をバナーとして表示（任意）
+  if(estimate && !isNaN(estimate)){
+    var estHTML = '📍 エリア計算から：<strong>¥' + Math.round(estimate/10000) + '万</strong>（参考値）';
+    var banner = document.createElement('div');
+    banner.style.cssText = 'background:#EEF2FB;border-radius:8px;padding:11px;font-size:11px;color:#1C3B8C;margin-bottom:10px;border-left:3px solid #E84080;';
+    banner.innerHTML = estHTML;
+    document.getElementById('form-section').insertBefore(banner, document.getElementById('form-section').firstChild);
+  }
+  
+  updatePrec();
+});
+
+function updatePrec(){
+  var pts=0;
+  
+  // 住所：郵便番号 + 市区町村で確認
+  if(document.getElementById('f-city').value) pts+=25;
+  
+  // 土地面積
+  if(document.getElementById('f-land').value) pts+=25;
+  
+  // 建物面積
+  if(document.getElementById('f-bldg').value) pts+=25;
+  
+  // 築年数（プルダウン）
+  if(document.getElementById('f-age-era').value) pts+=25;
+  
+  precScore=pts;
+  document.getElementById('prec-pct').textContent=pts+'%';
+  document.getElementById('prec-fill').style.width=pts+'%';
+  
+  // ピクトグラフ更新
+  document.getElementById('pi-addr').className='pi'+(document.getElementById('f-city').value?' done':'');
+  document.getElementById('pi-land').className='pi'+(document.getElementById('f-land').value?' done':'');
+  document.getElementById('pi-bldg').className='pi'+(document.getElementById('f-bldg').value?' done':'');
+  document.getElementById('pi-age').className='pi'+(document.getElementById('f-age-era').value?' done':'');
+}
+
+// 郵便番号検索
+function doZipLookup(){
+  var zip=document.getElementById('f-zip').value.replace(/[^0-9]/g,'');
+  if(zip.length!==7){alert('7桁の郵便番号を入力してください');return;}
+  
+  fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode='+zip)
+    .then(r=>r.json())
+    .then(d=>{
+      if(!d.results||!d.results[0]){showMsg('郵便番号が見つかりません','err');return;}
+      var r=d.results[0];
+      document.getElementById('f-city').value=r.address1+r.address2;
+      document.getElementById('f-addr').value=r.address3;
+      document.getElementById('city-f').style.display='';
+      document.getElementById('addr-f').style.display='';
+      showMsg('✓ '+r.address1+r.address2+' '+r.address3,'ok');
+      updatePrec();
+    })
+    .catch(e=>{showMsg('検索に失敗しました','err');});
+}
+
+function showMsg(t,cls){
+  var e=document.getElementById('zip-msg');
+  e.textContent=t;
+  e.className='zip-msg'+(cls?' '+cls:'');
+}
+
+// 築年数セレクタ変更時に入力フィールドを表示
+function updateAgeInput(){
+  var era=document.getElementById('f-age-era').value;
+  var yearInput=document.getElementById('f-age-year');
+  
+  if(era){
+    yearInput.style.display='';
+    // プレースホルダーを動的に変更
+    if(era==='s'){
+      yearInput.placeholder='昭和の年数（例：63）';
+    } else if(era==='h'){
+      yearInput.placeholder='平成の年数（例：15）';
+    } else if(era==='r'){
+      yearInput.placeholder='令和の年数（例：5）';
+    } else if(era==='w'){
+      yearInput.placeholder='西暦（例：1985）';
+    }
+    yearInput.value=''; // リセット
+  } else {
+    yearInput.style.display='none';
+    yearInput.value='';
+  }
+  updatePrec();
+}
+
+// メール切り替え（必須ではない）
+function toggleEmail(){
+  emailMode=!emailMode;
+  document.getElementById('tcheck').className='tcheck'+(emailMode?'':'.off');
+  document.getElementById('email-toggle').className='email-toggle'+(emailMode?'':'.off');
+  document.getElementById('email-fields').className='email-fields'+(emailMode?'':'hide');
+}
+
+// 築年数変換（プルダウン対応 → 数字のみで統一）
+function buildAge(){
+  var era=document.getElementById('f-age-era').value;
+  var year=parseInt(document.getElementById('f-age-year').value)||0;
+  
+  if(!era||!year) return '';
+  
+  var y;
+  if(era==='s') y=new Date().getFullYear()-(1925+year);
+  else if(era==='h') y=new Date().getFullYear()-(1988+year);
+  else if(era==='r') y=new Date().getFullYear()-(2018+year);
+  else if(era==='w') y=new Date().getFullYear()-year;
+  
+  return String(Math.max(0,Math.round(y))); // 築年数を年数で返す（数字のみ）
+}
+
+// 面積単位変換（m²に統一 → 数字のみで転送）
+function convertArea(val,unit){
+  if(!val||isNaN(val)) return '';
+  var n=parseFloat(val);
+  // 坪で入力された場合、m²に変換（1坪≈3.306m²）
+  if(unit==='tsubo') n=n*3.306;
+  return String(Math.round(n)); // m²の数字のみ返す
+}
+
+// 査定実行
+function doAssess(){
+  var type=document.getElementById('f-type').value;
+  if(!type){alert('物件種別を選択してください');return;}
+  
+  var city=document.getElementById('f-city').value||'';
+  var addr=document.getElementById('f-addr').value.trim();
+  if(!city&&!addr){alert('郵便番号で住所を検索してください');return;}
+  
+  // メール受取は必須ではない（emailModeがOFFでも査定可能）
+  if(emailMode){
+    var nm=document.getElementById('f-name').value.trim();
+    var em=document.getElementById('f-email').value.trim();
+    if(!nm){alert('お名前を入力してください');return;}
+    if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('正しいメールアドレスを入力してください');return;}
+  }
+  
+  var cityParts=city.match(/^(.*?[市区町村])(.*)/)||[city,city,''];
+  var mainCity=cityParts[1]||city;
+  var districtKey=(cityParts[2]||'').trim()||(addr.replace(/[0-9\-－\s]/g,'').substring(0,4))||'';
+  var cityDistrict=mainCity+'_'+districtKey;
+  
+  var params={
+    action:'assess',
+    cityDistrict:cityDistrict,
+    land:convertArea(document.getElementById('f-land').value,document.getElementById('f-land-unit').value),
+    bldg:convertArea(document.getElementById('f-bldg').value,document.getElementById('f-bldg-unit').value),
+    age:buildAge(),
+    struct:document.getElementById('f-struct').value,
+    cond:document.getElementById('f-cond').value,
+    type:type,
+    precScore:String(precScore)
+  };
+  
+  if(emailMode){
+    params.name=document.getElementById('f-name').value.trim();
+    params.email=document.getElementById('f-email').value.trim();
+    params.tel=document.getElementById('f-tel').value.trim();
+    params.addr=addr;
+  }
+  
+  document.getElementById('form-section').style.display='none';
+  document.getElementById('loading').className='loading show';
+  
+  var qs=Object.keys(params).map(k=>k+'='+encodeURIComponent(params[k])).join('&');
+  var s=document.createElement('script');
+  s.src=GAS_URL+'?'+qs+'&callback=showResult';
+  document.head.appendChild(s);
+  
+  setTimeout(()=>{
+    if(document.getElementById('loading').className.indexOf('show')>=0){
+      showResult({success:false,error:'timeout',fallback:true,cityDistrict:params.cityDistrict});
+    }
+  },15000);
+}
+
+// 結果表示
+function showResult(data){
+  document.getElementById('loading').className='loading';
+  document.getElementById('result-section').className='result-wrap show';
+  
+  var fmt=n=>n&&!isNaN(n)?Math.round(n).toLocaleString():'-';
+  
+  if(data&&data.success&&data.aiAmount&&data.aiAmount>0){
+    document.getElementById('r-amount').textContent=fmt(data.aiAmount);
+    document.getElementById('r-lower').textContent=fmt(data.aiLower)+'円';
+    document.getElementById('r-upper').textContent=fmt(data.aiUpper)+'円';
+    var barPct=Math.round(((data.aiAmount-data.aiLower)/(data.aiUpper-data.aiLower))*100);
+    document.getElementById('r-bar').style.width=Math.max(5,barPct)+'%';
+    
+    var prec=data.precScore||precScore;
+    document.getElementById('r-prec-fill').style.width=Math.max(5,prec)+'%';
+    document.getElementById('r-prec-note').textContent=
+      prec>=80?'入力情報が充実しており、精度が高い状態です。':
+      prec>=60?'面積・築年数が揃い、比較的精度が高い状態です。':
+      prec>=40?'土地面積があるため概算を算出しました。':
+               '住所情報のみです。面積・築年数を追加すると精度が上がります。';
+    
+    var meta='参照事例：'+data.samples+'件　/　地区：'+(data.district||'市区町村平均')+
+      (data.unitPrice?'<br>坪単価目安：'+fmt(data.unitPrice)+'円/m²':'');
+    document.getElementById('r-meta').innerHTML=meta;
+  } else {
+    document.getElementById('r-amount').textContent='査定中';
+    document.getElementById('r-lower').textContent='─';
+    document.getElementById('r-upper').textContent='─';
+    document.getElementById('r-bar').style.width='50%';
+    document.getElementById('r-prec-fill').style.width='10%';
+    document.getElementById('r-prec-note').textContent='データベース接続中です。担当者より個別にご連絡します。';
+    document.getElementById('r-meta').innerHTML=
+      'ご入力いただいた物件情報を受け付けました。<br>'+
+      '担当宅建士（瀧 幸治）より査定結果をご連絡いたします。<br>'+
+      '<strong style="color:var(--navy);">TEL: 072-702-8043</strong>';
+  }
+  
+  if(data&&data.emailSent){
+    document.getElementById('email-sent').style.display='block';
+  }
+}
+
+function resetForm(){
+  document.getElementById('form-section').style.display='';
+  document.getElementById('result-section').className='result-wrap';
+  document.getElementById('email-sent').style.display='none';
+  updatePrec();
+}
+
+// エスケープハッチ
+function callPhone(){
+  alert('お電話ありがとうございます。\n072-702-8043 までお電話ください。\n担当者がお聞きしながら入力をサポートします。');
+  window.location.href='tel:07270288043';
+}
+
+function sendViaLine(){
+  var data={
+    type:document.getElementById('f-type').value,
+    city:document.getElementById('f-city').value,
+    addr:document.getElementById('f-addr').value,
+    land:convertArea(document.getElementById('f-land').value,document.getElementById('f-land-unit').value),
+    bldg:convertArea(document.getElementById('f-bldg').value,document.getElementById('f-bldg-unit').value),
+    age:buildAge(),
+    struct:document.getElementById('f-struct').value,
+    cond:document.getElementById('f-cond').value
+  };
+  
+  var msg='【AI査定 入力途中データ】\n\n'+
+    '物件種別：'+data.type+'\n'+
+    '市区町村：'+data.city+'\n'+
+    '番地：'+data.addr+'\n'+
+    '土地面積：'+data.land+'m²\n'+
+    '建物面積：'+data.bldg+'m²\n'+
+    '築年数：'+data.age+'年\n'+
+    '構造：'+data.struct+'\n'+
+    'コンディション：'+data.cond+'\n\n'+
+    '上記の情報をもとに、査定をお進めさせていただきます。';
+  
+  window.open('https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz&message='+encodeURIComponent(msg),'_blank');
+}
+
+</script>
+
+</body>
+</html>

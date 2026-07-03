@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AGEnt-YeLL は兵庫県・大阪府・京都府の不動産売却に対応。川西市・伊丹市・宝塚市・尼崎市・猪名川町・神戸市・大阪市・西宮市・寝屋川市・京都市でご相談ください。">
+    <title>対応エリア一覧｜AGEnt-YeLL エージェントエール</title>
+    <link rel="canonical" href="https://agentyell.jp/area/">
+    <script async src="https://www.clarity.ms/tag/x9e7w60u34"></script>
+    
+    <style>
+        :root {
+            --navy: #1C3B8C;
+            --pink: #E84080;
+            --cream: #F8F5F0;
+            --gray-light: #F5F5F5;
+            --gray-text: #666666;
+            --text-dark: #333333;
+            --border-gray: #E0E0E0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+        
+        /* Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-gray);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        
+        .header-contact {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .header-tel {
+            font-size: 14px;
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            font-size: 12px;
+        }
+        
+        .lang-switcher a {
+            color: var(--gray-text);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        
+        .lang-switcher a:hover {
+            background-color: var(--gray-light);
+            color: var(--navy);
+        }
+        
+        nav {
+            display: flex;
+            gap: 24px;
+            margin-left: 40px;
+        }
+        
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover {
+            color: var(--pink);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: var(--gray-text);
+            margin-bottom: 48px;
+        }
+        
+        /* Area Cards Grid */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        
+        .area-card {
+            background-color: var(--gray-light);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .area-card:hover {
+            border-color: var(--pink);
+            box-shadow: 0 4px 12px rgba(232, 64, 128, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .area-card h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 0;
+        }
+        
+        .area-card-cta {
+            font-size: 13px;
+            color: var(--pink);
+            font-weight: 500;
+            margin-top: auto;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--cream);
+            border-radius: 8px;
+            padding: 40px 32px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .cta-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            font-size: 15px;
+            color: var(--gray-text);
+            margin-bottom: 24px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--pink);
+            color: #ffffff;
+            padding: 14px 36px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: #c93366;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 64, 128, 0.3);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 60px;
+        }
+        
+        .faq-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 24px;
+        }
+        
+        .faq-item {
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy);
+            user-select: none;
+            transition: all 0.2s;
+        }
+        
+        .faq-question:hover {
+            background-color: #eeeeee;
+        }
+        
+        .faq-toggle {
+            font-size: 16px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+        
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding: 0 20px 16px 20px;
+        }
+        
+        .faq-answer p {
+            color: var(--gray-text);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        /* Float Button */
+        .float-btn-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 999;
+        }
+        
+        body.scroll-down .float-btn-container {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .float-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .float-btn-line {
+            background-color: #00B900;
+        }
+        
+        .float-btn-line:hover {
+            background-color: #009500;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 185, 0, 0.3);
+        }
+        
+        .float-btn-inquiry {
+            background-color: var(--pink);
+        }
+        
+        .float-btn-inquiry:hover {
+            background-color: #c93366;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(232, 64, 128, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: #ffffff;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border-gray);
+            margin-top: 60px;
+        }
+        
+        footer p {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        
+        footer a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Data Attributes */
+        [data-section] {
+            /* For analytics tracking */
+        }
+        
+        [data-track] {
+            /* For analytics tracking */
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 800px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 12px 16px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .header-contact {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            main {
+                padding: 24px 16px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .areas-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+            }
+            
+            .area-card {
+                padding: 16px;
+            }
+            
+            .area-card h2 {
+                font-size: 16px;
+            }
+            
+            .cta-section {
+                padding: 24px 16px;
+            }
+            
+            .cta-section h2 {
+                font-size: 20px;
+            }
+            
+            .cta-section p {
+                font-size: 14px;
+            }
+            
+            .float-btn-container {
+                bottom: 16px;
+                right: 16px;
+            }
+            
+            .float-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 10px;
+            }
+        }
+    </style>
+    
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "AGEnt-YeLL",
+                "item": "https://agentyell.jp/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "対応エリア",
+                "item": "https://agentyell.jp/area/"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "対応エリア外でも相談できますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "対応エリア外でも無料査定を承ります。詳細はお気軽にお問い合わせください。遠方の物件についても、オンライン相談や訪問対応をご検討ください。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "査定に費用はかかりますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI査定は完全無料です。査定結果のみでの利用も問題ありませんので、お気軽にご利用ください。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "複数の物件を査定できますか？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "はい、複数物件の査定対応いたします。各物件ごとに査定フォームをご送信ください。一覧管理も可能です。"
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body data-section="area-top">
+    <!-- Header -->
+    <header>
+        <a href="/" class="logo">AGEnt-YeLL</a>
+        <nav>
+            <a href="/">トップ</a>
+            <a href="/area/">対応エリア</a>
+            <a href="/buyer/">買いたい方</a>
+            <a href="/about/">会社情報</a>
+        </nav>
+        <div class="header-contact">
+            <a href="tel:07270028043" class="header-tel">072-702-8043</a>
+            <div class="lang-switcher">
+                <a href="/en/area/">EN</a>
+                <a href="/zh/area/">中文</a>
+                <a href="/ko/area/">한국어</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main data-track="area-content">
+        <h1>対応エリア一覧</h1>
+        <p class="subtitle">兵庫県・大阪府・京都府の不動産売却に幅広く対応しています。</p>
+        
+        <!-- Areas Grid -->
+        <section class="areas-grid" data-section="area-cards">
+            <a href="/" class="area-card" data-track="area-kawanishi">
+                <h2>川西市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-inagawa">
+                <h2>猪名川町</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-takarazuka">
+                <h2>宝塚市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-itami">
+                <h2>伊丹市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-amagasaki">
+                <h2>尼崎市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-kobe">
+                <h2>神戸市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-osaka">
+                <h2>大阪市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-nishinomiya">
+                <h2>西宮市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-neyagawa">
+                <h2>寝屋川市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+            <a href="/" class="area-card" data-track="area-kyoto">
+                <h2>京都市</h2>
+                <p class="area-card-cta">相場・事例を見る →</p>
+            </a>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section" data-section="cta-ai-inquiry">
+            <h2>物件を査定してみませんか？</h2>
+<div style="background:#fff8e7;border-radius:6px;padding:9px 13px;font-size:10px;color:#854F0B;line-height:1.6;margin-bottom:11px;border-left:3px solid #e0c848;">※AI査定は統計的概算値であり不動産鑑定評価ではありません</div>
+            <p>AIが最新の市場データを分析し、あなたの物件の相場価格を無料で算出します。</p>
+            <a href="https://agentyell.jp/form/lp/" class="cta-button" data-track="cta-to-form">無料AI査定を利用する</a>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section class="faq-section" data-section="faq">
+            <h2>よくあるご質問</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>対応エリア外でも相談できますか？</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>対応エリア外でも無料査定を承ります。詳細はお気軽にお問い合わせください。遠方の物件についても、オンライン相談や訪問対応をご検討ください。</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>査定に費用はかかりますか？</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>AI査定は完全無料です。査定結果のみでの利用も問題ありませんので、お気軽にご利用ください。</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>複数の物件を査定できますか？</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>はい、複数物件の査定対応いたします。各物件ごとに査定フォームをご送信ください。一覧管理も可能です。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Float Button Container -->
+    <div class="float-btn-container">
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz" class="float-btn float-btn-line" data-track="float-line" title="LINEで相談">LINE<br>相談</a>
+        <a href="https://agentyell.jp/form/lp/" class="float-btn float-btn-inquiry" data-track="float-inquiry" title="無料査定">無料<br>査定</a>
+    </div>
+    
+    <!-- Footer -->
+    <footer data-section="footer">
+        <p>&copy; 2024 AGEnt-YeLL. 兵庫県知事（宅地建物取引業）第011512号</p>
+        <p><a href="https://g.page/r/CRshGtYBdqaQEAE/review">Google ビジネスプロフィール</a></p>
+    </footer>
+    <div style="font-size:10px;color:#888;margin-top:16px;padding-top:12px;border-top:1px solid #ddd;text-align:center;">データ出典：国土交通省 不動産情報ライブラリ（reinfolib）<a href="https://www.reinfolib.mlit.go.jp/" target="_blank" rel="noopener" style="color:#1C3B8C;text-decoration:underline;">https://www.reinfolib.mlit.go.jp/</a></div>
+    
+    <script>
+        // Float Button: Show/Hide on Scroll
+        window.addEventListener('scroll', () => {
+            const container = document.querySelector('.float-btn-container');
+            if (window.scrollY >= 400) {
+                document.body.classList.add('scroll-down');
+            } else {
+                document.body.classList.remove('scroll-down');
+            }
+        });
+        
+        // FAQ: Toggle Open/Close
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
