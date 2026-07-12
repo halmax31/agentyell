@@ -1,0 +1,80 @@
+# DEPLOY.md — 移管当日手順(いえらぶ → 自社サイト)
+
+対象: agentyell.jp のドメイン移管と同時に本番公開する際の手順書。
+
+## 事前準備(移管日より前に完了させること)
+
+- [ ] `node scripts/verify-site.js` がローカルで全件パスすることを確認
+- [ ] GSC(Google Search Console)の現行(いえらぶ)プロパティから、カバレッジ済み旧URLを全量エクスポートし、`vercel.json` の `redirects` に漏れがないか突合する
+- [ ] ブログ記事のエクスポート状況を確認し、可能であれば個別301マップを `vercel.json` に追加(間に合わない場合は `/blog/*` → `/akiya/` の暫定リダイレクトのまま進める)
+- [ ] `voice`・`akiya` の成約事例(4,587万円)掲載許諾が取れていれば、該当のHTMLコメントを解除して公開する
+- [ ] `privacy.html` の制定日・改定日、`terms.html` の正式な利用規約原文(旧 `/rule/` より移植)が確定していれば反映する
+- [ ] `sell.html` に掲載する物件が確定していれば、物件カードの実装(取引態様・価格・所在地・面積・種別の必須表示)を行う
+
+## 当日の切り替え手順
+
+1. **Vercelにドメインを追加**
+   - Vercelプロジェクトの Settings → Domains で `agentyell.jp` と `www.agentyell.jp` を追加
+   - `www.agentyell.jp` は `agentyell.jp` へのリダイレクト設定にする(`vercel.json` の redirects で既に host ベースの301を設定済み)
+
+2. **DNSを切り替え**
+   - 現行(いえらぶ)のDNS設定からVercelが指示するAレコード/CNAMEに変更
+   - TTLを事前に短く設定しておくと切り替えの反映が早い
+
+3. **SSL証明書の発行確認**
+   - Vercelのドメイン設定画面で証明書が有効(緑のチェック)になるまで待つ
+   - `https://agentyell.jp/` にアクセスし、証明書エラーが出ないことを確認
+
+4. **GSC(Search Console)へのサイトマップ送信・URL検査**
+   - 新しいプロパティ(またはドメインプロパティ)で `https://agentyell.jp/sitemap.xml` を送信
+   - 主要ページ(`/`, `/akiya/`, `/form/`, `/area/`)についてURL検査ツールでインデックス登録をリクエスト
+
+5. **301リダイレクトの動作確認(サンプル10本)**
+   以下を実機で必ず確認する(想定される旧URLパターン。実際の旧URLはGSCエクスポート結果で要突合):
+   - `/company/` → `/about/`
+   - `/staff/` → `/staff/koji/`
+   - `/sellingbknlist/` → `/sell/`
+   - `/pg-akiya/` → `/akiya/`
+   - `/contact/` → `/form/`
+   - `/voice/detail/xxx` → `/voice/`
+   - `/news/` → `/`
+   - `/rule/` → `/terms/`
+   - `/cookie/` → `/privacy/`
+   - `/blog/` → `/akiya/`(暫定。302で一時リダイレクトである点に注意)
+   - `www.agentyell.jp/` → `https://agentyell.jp/`
+
+6. **計測タグの動作確認**
+   - GA4のリアルタイムレポートでアクセスが計測されていることを確認
+   - Microsoft Clarity のダッシュボードでセッションが記録されていることを確認
+
+## 自動チェックスクリプト
+
+```
+node scripts/verify-site.js
+```
+
+以下を自動検証する:
+- 全22ページのUTF-8有効性・文字化けゼロ
+- tel:リンクがマスターデータの3系統のみに限定されていること
+- エリア10ページへの他地名混入がないこと(関連エリアリンク等の正当な言及は除外)
+- 「248」の架空件数表記が排除されていること
+- 全ページフッターに宅建業免許番号が存在すること
+- form.htmlの同意チェックボックス・disabled切替・AI免責文(静的チェック)
+- 全ページにcanonical・OGP(og:image含む)・GA4・Clarityが存在すること
+- 内部リンクが全て実在するページを指していること
+
+## このスクリプトでは自動化できていない項目(手動確認が必須)
+
+- **Rich Results Test**: https://search.google.com/test/rich-results に本番URLを入力し、構造化データのエラーがないことを確認する
+- **Lighthouse SEO/Accessibility スコア**: この開発環境では `npx lighthouse` がWindows特有の一時ディレクトリ権限エラーでクラッシュし自動実行できなかった。本番デプロイ後、Chrome DevTools の Lighthouse パネル、または https://pagespeed.web.dev/ で計測し、SEO/Accessibility ともに90以上であることを確認する
+- **form.html の GAS 送信の実成功確認**: 実際にフォームへ入力し送信、GASのスプレッドシート/メール通知に反映されることを確認する(ローカル静的解析では送信ロジックの存在確認のみ実施済み)
+- **ブラウザでの目視確認**: 主要ページをデスクトップ・モバイル双方の実機/エミュレータで確認する
+
+## 既知の残課題(ユーザー確認待ち)
+
+1. voice/akiyaの成約事例(4,587万円)の掲載許諾有無 — 現在HTMLコメントで非公開中
+2. privacy.htmlの制定日(2024/4/1)・改定日(2026/6/1)の正確性
+3. terms.htmlの正式な利用規約原文(旧`/rule/`からの移植、内容支給待ち)
+4. sell.htmlに掲載する物件の有無(現状このリポジトリには実物件データなし)
+5. ブログ記事の総数とエクスポート形式(依頼済み・納品待ち) — 納品後にPhase 5の暫定リダイレクトを個別301マップへ差し替えること
+6. GSCの認証方式(自社タグ or DNS)

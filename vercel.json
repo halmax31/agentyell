@@ -1,13 +1,51 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.agentyell.jp" }], "destination": "https://agentyell.jp/:path*", "permanent": true },
+
+    { "source": "/company", "destination": "/about", "permanent": true },
+    { "source": "/company/:path*", "destination": "/about", "permanent": true },
+
+    { "source": "/staff", "destination": "/staff/koji", "permanent": true },
+    { "source": "/staff/detail", "destination": "/staff/koji", "permanent": true },
+    { "source": "/staff/detail/:path*", "destination": "/staff/koji", "permanent": true },
+
+    { "source": "/sellingbknlist", "destination": "/sell", "permanent": true },
+    { "source": "/sellingbknlist/:path*", "destination": "/sell", "permanent": true },
+
+    { "source": "/pg-akiya", "destination": "/akiya", "permanent": true },
+    { "source": "/pg-akiya/:path*", "destination": "/akiya", "permanent": true },
+    { "source": "/pg-inheritance", "destination": "/akiya", "permanent": true },
+    { "source": "/pg-inheritance/:path*", "destination": "/akiya", "permanent": true },
+
+    { "source": "/contact", "destination": "/form", "permanent": true },
+    { "source": "/contact/:path*", "destination": "/form", "permanent": true },
+
+    { "source": "/voice/detail", "destination": "/voice", "permanent": true },
+    { "source": "/voice/detail/:path*", "destination": "/voice", "permanent": true },
+
+    { "source": "/news", "destination": "/", "permanent": true },
+    { "source": "/news/:path*", "destination": "/", "permanent": true },
+
+    { "source": "/rule", "destination": "/terms", "permanent": true },
+    { "source": "/rule/:path*", "destination": "/terms", "permanent": true },
+
+    { "source": "/cookie", "destination": "/privacy", "permanent": true },
+    { "source": "/cookie/:path*", "destination": "/privacy", "permanent": true },
+
+    { "source": "/blog", "destination": "/akiya", "permanent": false },
+    { "source": "/blog/:path*", "destination": "/akiya", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
       ]
     }
   ]
