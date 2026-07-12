@@ -7,14 +7,14 @@
 <!-- float-btn -->
 <div class="float" id="float">
   <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz" class="float-btn float-ln" target="_blank" rel="noopener">LINE</a>
-  <a href="/form/" class="float-btn float-pk" data-track="float-cta">査定すめE/a>
+  <a href="/form/" class="float-btn float-pk" data-track="float-cta">査定する</a>
 </div>
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI不動産無料査宁E| 川西市�E猪名川町・大阪市淀川区 | AGEnt-YeLL</title>
-<meta name="description" content="川西市�E猪名川町・大阪市淀川区の不動産をAIが即時査定。住所だけでも忁E��概算額を提示。売却義務なし�E完�E無料。�E力情堲が多いほど精度が上がります、E>
+<title>AI不動産無料査定 | 川西市・猪名川町・大阪市淀川区 | AGEnt-YeLL</title>
+<meta name="description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。住所だけでも必ず概算額を提示。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://www.agentyell.jp/form/">
 
@@ -109,14 +109,14 @@ select{
 .zip-msg.ok{ color:var(--green); }
 .zip-msg.err{ color:#c0392b; }
 
-/* EMAIL TOGGLE - 任意選択弁E*/
+/* EMAIL TOGGLE - 任意選択式 */
 .email-toggle{ background:#EEF2FB; border-radius:8px; padding:11px 14px; cursor:pointer; display:flex; align-items:center; gap:10px; border:1.5px solid #DDD8D0; transition:all .15s; user-select:none; }
 .email-toggle.off{ border-color:#DDD8D0; }
 .tcheck{ width:18px; height:18px; border:1.5px solid var(--navy); border-radius:4px; display:flex; align-items:center; justify-content:center; background:var(--white); flex-shrink:0; transition:background .15s; }
 .tcheck::after{ display:none; }
 .tcheck.off{ background:var(--white); border-color:#DDD8D0; }
 .tcheck:not(.off){ background:var(--navy); }
-.tcheck:not(.off)::after{ content:'✁E; color:#fff; font-size:11px; font-weight:700; display:block; }
+.tcheck:not(.off)::after{ content:'✓'; color:#fff; font-size:11px; font-weight:700; display:block; }
 .toggle-text{ font-size:12px; color:var(--navy); font-weight:500; line-height:1.3; }
 .toggle-sub{ font-size:10px; color:var(--muted); margin-top:1px; }
 .email-fields{ display:block; margin-top:11px; }
@@ -197,7 +197,7 @@ select{
 
 <div class="bc">
   <ol>
-    <li><a href="/">ホ�Eム</a></li>
+    <li><a href="/">ホーム</a></li>
     <li>AI査定フォーム</li>
   </ol>
 </div>
@@ -205,11 +205,11 @@ select{
 <div class="wrap">
 
   <div class="page-head">
-    <h1 class="page-title">AI不動産査宁E/h1>
-    <p class="page-sub">川西市�E猪名川町・大阪市淀川区<br>10秒でカンタン査宁E/p>
+    <h1 class="page-title">AI不動産査定</h1>
+    <p class="page-sub">川西市・猪名川町・大阪市淀川区<br>10秒でカンタン査定</p>
     <div class="tags">
-      <span class="tag">完�E無斁E/span>
-      <span class="tag">売却義務なぁE/span>
+      <span class="tag">完全無料</span>
+      <span class="tag">売却義務なし</span>
       <span class="tag">即時診断</span>
     </div>
   </div>
@@ -234,17 +234,17 @@ select{
     </div>
 
     <div class="card">
-      <div class="sec-title">基本惁E��</div>
+      <div class="sec-title">基本情報</div>
 
       <!-- 物件種別 -->
       <div class="field">
-        <label><span class="req">忁E��E/span> 物件種別</label>
+        <label><span class="req">必須</span> 物件種別</label>
         <select id="f-type" onchange="updatePrec()">
           <option value="">選択してください</option>
           <option value="一戸建">一戸建</option>
           <option value="マンション">マンション</option>
           <option value="土地">土地</option>
-          <option value="アパ�EチE>アパ�EチE/option>
+          <option value="アパート">アパート</option>
           <option value="ビル">ビル</option>
           <option value="駐車場">駐車場</option>
         </select>
@@ -252,7 +252,7 @@ select{
 
       <!-- 郵便番号検索 -->
       <div class="field">
-        <label><span class="req">忁E��E/span> 郵便番号�E�E桁E��E/label>
+        <label><span class="req">必須</span> 郵便番号（7桁）</label>
         <div class="zip-row">
           <input type="text" id="f-zip" placeholder="123-4567" maxlength="8" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9-]/g,'')">
           <button type="button" class="zip-btn" onclick="doZipLookup()">住所検索</button>
@@ -262,23 +262,23 @@ select{
 
       <!-- 住所 -->
       <div class="field" id="city-f" style="display:none;">
-        <label>市区町杁E/label>
+        <label>市区町村</label>
         <input type="text" id="f-city" readonly style="background:#f5f5f5;">
       </div>
 
       <div class="field" id="addr-f" style="display:none;">
-        <label>番地・そ�E仁E/label>
-        <input type="text" id="f-addr" placeholder="例！E-2-3">
+        <label>番地・その他</label>
+        <input type="text" id="f-addr" placeholder="例：1-2-3">
       </div>
 
     </div>
 
     <div class="card">
-      <div class="sec-title">詳細惁E��</div>
+      <div class="sec-title">詳細情報</div>
 
-      <!-- 土地面積（改喁E���E�E-->
+      <!-- 土地面積（改善版） -->
       <div class="field">
-        <label>土地面穁E<span class="opt">任愁E/span></label>
+        <label>土地面積 <span class="opt">任意</span></label>
         <div class="two">
           <input type="number" id="f-land" placeholder="100" min="0" step="0.1" onchange="updatePrec()">
           <select id="f-land-unit" onchange="updatePrec()">
@@ -286,12 +286,12 @@ select{
             <option value="tsubo">坪</option>
           </select>
         </div>
-        <div class="hint">単位を選択してから数値を�E力してください</div>
+        <div class="hint">単位を選択してから数値を入力してください</div>
       </div>
 
-      <!-- 建物面積（改喁E���E�E-->
+      <!-- 建物面積（改善版） -->
       <div class="field">
-        <label>建物面穁E<span class="opt">任愁E/span></label>
+        <label>建物面積 <span class="opt">任意</span></label>
         <div class="two">
           <input type="number" id="f-bldg" placeholder="50" min="0" step="0.1" onchange="updatePrec()">
           <select id="f-bldg-unit" onchange="updatePrec()">
@@ -299,18 +299,18 @@ select{
             <option value="tsubo">坪</option>
           </select>
         </div>
-        <div class="hint">単位を選択してから数値を�E力してください</div>
+        <div class="hint">単位を選択してから数値を入力してください</div>
       </div>
 
-      <!-- 築年数�E��Eルダウン化！E-->
+      <!-- 築年数（プルダウン化） -->
       <div class="field">
-        <label>築年数 <span class="opt">任愁E/span></label>
+        <label>築年数 <span class="opt">任意</span></label>
         <div class="two">
           <select id="f-age-era" onchange="updateAgeInput()">
-            <option value="">選抁E/option>
-            <option value="s">昭咁E/option>
-            <option value="h">平戁E/option>
-            <option value="r">令咁E/option>
+            <option value="">選択</option>
+            <option value="s">昭和</option>
+            <option value="h">平成</option>
+            <option value="r">令和</option>
             <option value="w">西暦</option>
           </select>
           <input type="number" id="f-age-year" placeholder="63" min="1" max="150" onchange="updatePrec()" style="display:none;">
@@ -320,102 +320,105 @@ select{
 
       <!-- 構造 -->
       <div class="field">
-        <label>建物構造 <span class="opt">任愁E/span></label>
+        <label>建物構造 <span class="opt">任意</span></label>
         <select id="f-struct" onchange="updatePrec()">
-          <option value="">選抁E/option>
+          <option value="">選択</option>
           <option value="木造">木造</option>
-          <option value="RC">鉁E��コンクリート造</option>
+          <option value="RC">鉄筋コンクリート造</option>
           <option value="S">鋼造</option>
           <option value="ALC">ALC造</option>
-          <option value="そ�E仁E>そ�E仁E/option>
+          <option value="その他">その他</option>
         </select>
       </div>
 
-      <!-- コンチE��ション -->
+      <!-- コンディション -->
       <div class="field">
-        <label>物件状慁E<span class="opt">任愁E/span></label>
+        <label>物件状態 <span class="opt">任意</span></label>
         <select id="f-cond" onchange="updatePrec()">
-          <option value="">選抁E/option>
-          <option value="新篁E>新篁E/option>
+          <option value="">選択</option>
+          <option value="新築">新築</option>
           <option value="良好">良好</option>
-          <option value="普送E>普送E/option>
-          <option value="要修繁E>要修繁E/option>
+          <option value="普通">普通</option>
+          <option value="要修繕">要修繕</option>
           <option value="ボロボロ">ボロボロ</option>
         </select>
       </div>
 
     </div>
 
-    <!-- メール受け取り�E�任愁E- ユーザー選択式！E-->
+    <!-- メール受け取り（任意 - ユーザー選択式） -->
     <div class="card">
       <div class="email-toggle" id="email-toggle" onclick="toggleEmail()">
         <div class="tcheck" id="tcheck"></div>
         <div>
           <div class="toggle-text">査定結果をメールで受け取る</div>
-          <div class="toggle-sub">チェチE��で詳細惁E��入力欁E��表示されまぁE/div>
+          <div class="toggle-sub">チェックで詳細情報入力欄が表示されます</div>
         </div>
       </div>
 
       <div class="email-fields" id="email-fields">
         <div class="field" style="margin-top:12px;">
-          <label><span class="req">忁E��E/span> お名剁E/label>
-          <input type="text" id="f-name" placeholder="例：岲田太郁E onchange="updatePrec()">
+          <label><span class="req">必須</span> お名前</label>
+          <input type="text" id="f-name" placeholder="例：山田太郎" onchange="updatePrec()">
         </div>
         <div class="field">
-          <label><span class="req">忁E��E/span> メールアドレス</label>
+          <label><span class="req">必須</span> メールアドレス</label>
           <input type="email" id="f-email" placeholder="example@gmail.com" onchange="updatePrec()">
         </div>
         <div class="field">
-          <label>電該番号 <span class="opt">任愁E/span></label>
+          <label>電話番号 <span class="opt">任意</span></label>
           <input type="tel" id="f-tel" placeholder="090-1234-5678">
         </div>
       </div>
     </div>
 
-    <!-- エスゲープハチE�� -->
+    <!-- エスケープハッチ -->
     <div class="escape-box">
-      <div class="escape-title">ↁE難しい場合�EこちめEↁE/div>
+      <div class="escape-title">↓ 難しい場合はこちら ↓</div>
       <div class="escape-options">
         <button type="button" class="escape-btn" onclick="callPhone()">
-          📞 電該で聞きながら入力！E72-702-8043�E�E        </button>
+          📞 電話で聞きながら入力（072-702-8043）
+        </button>
         <button type="button" class="escape-btn line" onclick="sendViaLine()">
-          💬 LINEで入力途中の惁E��を送信
+          💬 LINEで入力途中の情報を送信
         </button>
       </div>
     </div>
 
     <div class="trust">
-      <strong>✁E完�E無斁E/strong> �E�E<strong>売却義務なぁE/strong> �E�E査定だけでもOK
+      <strong>✓ 完全無料</strong> ｜ <strong>売却義務なし</strong> ｜ 査定だけでもOK
     </div>
 
     <button type="button" class="btn-submit" onclick="doAssess()">査定結果を表示</button>
-    <div class="submit-note">※住所だけでも概算額が出まぁEbr>惁E��が増えるほど精度が上がりまぁE/div>
+    <div class="submit-note">※住所だけでも概算額が出ます<br>情報が増えるほど精度が上がります</div>
 
   </div>
 
-  <!-- ローチE��ング -->
+  <!-- ローディング -->
   <div class="loading" id="loading">
     <div class="spinner"></div>
-    <div class="loading-text">査定中でぁE..</div>
+    <div class="loading-text">査定中です...</div>
   </div>
 
   <!-- 結果表示 -->
   <div class="result-wrap" id="result-section">
     <div class="disclaimer">
-      こ�E査定額�EAIが算�Eした参老E��です。正確な評価は現地確認後にお知らせします、E    </div>
+      この査定額はAIが算出した参考値です。正確な評価は現地確認後にお知らせします。
+    </div>
 
     <div class="amount-card">
-      <div class="ac-label">査定額（中央値�E�E/div>
+      <div class="ac-label">査定額（中央値）</div>
       <div class="ac-value">
-        <span id="r-amount">-</span><small>冁E/small>
+        <span id="r-amount">-</span><small>円</small>
       </div>
       <div class="range-bars">
-        <span>佁E/span>
+        <span>低</span>
         <div class="range-bar"><div class="range-bar-fill" id="r-bar"></div></div>
         <span id="r-upper">-</span>
       </div>
       <div style="text-align:right;font-size:10px;color:var(--muted);margin-top:4px;">
-        <span id="r-lower">-</span> 、E      </div>
+        <span id="r-lower">-</span> 〜
+      </div>
 
       <div class="prec-score">
         <div class="ps-bar"><div class="ps-bar-fill" id="r-prec-fill"></div></div>
@@ -426,40 +429,48 @@ select{
     </div>
 
     <div id="email-sent" style="display:none;background:#e8f5e9;border-radius:8px;padding:11px;font-size:11px;color:#2e7d32;text-align:center;margin-bottom:10px;">
-      ✁Eメールアドレスを送信しました
+      ✓ メールアドレスを送信しました
     </div>
 
     <div class="actions">
-      <button type="button" class="action-btn primary" onclick="resetForm()">別の物件を査宁E/button>
-      <button type="button" class="action-btn" onclick="window.location.href='/'">ホ�Eムに戻めE/button>
+      <button type="button" class="action-btn primary" onclick="resetForm()">別の物件を査定</button>
+      <button type="button" class="action-btn" onclick="window.location.href='/'">ホームに戻る</button>
     </div>
   </div>
 
 </div>
 
 <script>
-// ====== GAS API エンド�EインチE======
-// 以下�E URL を�E刁E�E Google Apps Script チE�Eロイ URL に置き換えてください
-// チE�Eロイ URL の形弁E https://script.google.com/macros/s/[SCRIPT_ID]/exec
+// ====== GAS API エンドポイント ======
+// 以下の URL を自分の Google Apps Script デプロイ URL に置き換えてください
+// デプロイ URL の形式: https://script.google.com/macros/s/[SCRIPT_ID]/exec
 var GAS_URL='https://script.google.com/macros/s/AKfycbznHcSClJjF6sqtZpcuzamX5Az1TSvjYMVKP4UPSVOqK7FEQK6VFmyNT2Z_EHiW8JG0/exec'; // AGEnt-YeLL Assessment API
 
-var emailMode=false; // チE��ォルチEOFF�E�ユーザーが選択可能�E�Evar precScore=0;
+var emailMode=false; // デフォルト OFF（ユーザーが選択可能）
+var precScore=0;
 
-// 初期化時にメールモーチEOFF + チェチE��非表示 + クエリパラメータ自動�E劁Ewindow.addEventListener('load',function(){
+// 初期化時にメールモード OFF + チェック非表示 + クエリパラメータ自動入力
+window.addEventListener('load',function(){
   emailMode=false;
   document.getElementById('tcheck').className='tcheck off';
   document.getElementById('email-toggle').className='email-toggle off';
   document.getElementById('email-fields').className='email-fields hide';
   
-  // ◁EURLクエリパラメータを解析して自動�E劁E  var params = new URLSearchParams(window.location.search);
-  var district = params.get('district');    // 地区吁E  var area = params.get('area');            // 土地面穁E  var estimate = params.get('estimate');    // 参老E��定顁E  
-  // 土地面積を自動�E劁E  if(area && !isNaN(area)){
+  // ◆ URLクエリパラメータを解析して自動入力
+  var params = new URLSearchParams(window.location.search);
+  var district = params.get('district');    // 地区名
+  var area = params.get('area');            // 土地面積
+  var estimate = params.get('estimate');    // 参考査定額
+  
+  // 土地面積を自動入力
+  if(area && !isNaN(area)){
     document.getElementById('f-land').value = area;
     document.getElementById('f-land-unit').value = 'm2';
   }
   
-  // 参老E��定額をバナーとして表示�E�任意！E  if(estimate && !isNaN(estimate)){
-    var estHTML = '📍 エリア計算から！Estrong>¥' + Math.round(estimate/10000) + '丁E/strong>�E�参老E���E�E;
+  // 参考査定額をバナーとして表示（任意）
+  if(estimate && !isNaN(estimate)){
+    var estHTML = '📍 エリア計算から：<strong>¥' + Math.round(estimate/10000) + '万</strong>（参考値）';
     var banner = document.createElement('div');
     banner.style.cssText = 'background:#EEF2FB;border-radius:8px;padding:11px;font-size:11px;color:#1C3B8C;margin-bottom:10px;border-left:3px solid #E84080;';
     banner.innerHTML = estHTML;
@@ -472,13 +483,17 @@ var emailMode=false; // チE��ォルチEOFF�E�ユーザーが選択可能�E�Evar
 function updatePrec(){
   var pts=0;
   
-  // 住所�E�郵便番号 + 市区町村で確誁E  if(document.getElementById('f-city').value) pts+=25;
+  // 住所：郵便番号 + 市区町村で確認
+  if(document.getElementById('f-city').value) pts+=25;
   
-  // 土地面穁E  if(document.getElementById('f-land').value) pts+=25;
+  // 土地面積
+  if(document.getElementById('f-land').value) pts+=25;
   
-  // 建物面穁E  if(document.getElementById('f-bldg').value) pts+=25;
+  // 建物面積
+  if(document.getElementById('f-bldg').value) pts+=25;
   
-  // 築年数�E��Eルダウン�E�E  if(document.getElementById('f-age-era').value) pts+=25;
+  // 築年数（プルダウン）
+  if(document.getElementById('f-age-era').value) pts+=25;
   
   precScore=pts;
   document.getElementById('prec-pct').textContent=pts+'%';
@@ -494,7 +509,7 @@ function updatePrec(){
 // 郵便番号検索
 function doZipLookup(){
   var zip=document.getElementById('f-zip').value.replace(/[^0-9]/g,'');
-  if(zip.length!==7){alert('7桁�E郵便番号を�E力してください');return;}
+  if(zip.length!==7){alert('7桁の郵便番号を入力してください');return;}
   
   fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode='+zip)
     .then(r=>r.json())
@@ -505,10 +520,10 @@ function doZipLookup(){
       document.getElementById('f-addr').value=r.address3;
       document.getElementById('city-f').style.display='';
       document.getElementById('addr-f').style.display='';
-      showMsg('✁E'+r.address1+r.address2+' '+r.address3,'ok');
+      showMsg('✓ '+r.address1+r.address2+' '+r.address3,'ok');
       updatePrec();
     })
-    .catch(e=>{showMsg('検索に夲敗しました','err');});
+    .catch(e=>{showMsg('検索に失敗しました','err');});
 }
 
 function showMsg(t,cls){
@@ -524,17 +539,17 @@ function updateAgeInput(){
   
   if(era){
     yearInput.style.display='';
-    // プレースホルダーを動皁E��変更
+    // プレースホルダーを動的に変更
     if(era==='s'){
-      yearInput.placeholder='昭和�E年数�E�例！E3�E�E;
+      yearInput.placeholder='昭和の年数（例：63）';
     } else if(era==='h'){
-      yearInput.placeholder='平成�E年数�E�例！E5�E�E;
+      yearInput.placeholder='平成の年数（例：15）';
     } else if(era==='r'){
-      yearInput.placeholder='令和�E年数�E�例！E�E�E;
+      yearInput.placeholder='令和の年数（例：5）';
     } else if(era==='w'){
-      yearInput.placeholder='西暦�E�例！E985�E�E;
+      yearInput.placeholder='西暦（例：1985）';
     }
-    yearInput.value=''; // リセチE��
+    yearInput.value=''; // リセット
   } else {
     yearInput.style.display='none';
     yearInput.value='';
@@ -542,14 +557,16 @@ function updateAgeInput(){
   updatePrec();
 }
 
-// メール刁E��替え（忁E��ではなぁE��Efunction toggleEmail(){
+// メール切り替え（必須ではない）
+function toggleEmail(){
   emailMode=!emailMode;
   document.getElementById('tcheck').className='tcheck'+(emailMode?'':'.off');
   document.getElementById('email-toggle').className='email-toggle'+(emailMode?'':'.off');
   document.getElementById('email-fields').className='email-fields'+(emailMode?'':'hide');
 }
 
-// 築年数変換�E��Eルダウン対忁EↁE数字�Eみで絲一�E�Efunction buildAge(){
+// 築年数変換（プルダウン対応 → 数字のみで統一）
+function buildAge(){
   var era=document.getElementById('f-age-era').value;
   var year=parseInt(document.getElementById('f-age-year').value)||0;
   
@@ -561,16 +578,20 @@ function updateAgeInput(){
   else if(era==='r') y=new Date().getFullYear()-(2018+year);
   else if(era==='w') y=new Date().getFullYear()-year;
   
-  return String(Math.max(0,Math.round(y))); // 築年数を年数で返す�E�数字�Eみ�E�E}
-
-// 面積単位変換�E�E²に絲一 ↁE数字�Eみで転送E��Efunction convertArea(val,unit){
-  if(!val||isNaN(val)) return '';
-  var n=parseFloat(val);
-  // 坪で入力された場合、m²に変換�E�E坪≁E.306m²�E�E  if(unit==='tsubo') n=n*3.306;
-  return String(Math.round(n)); // m²の数字�Eみ返す
+  return String(Math.max(0,Math.round(y))); // 築年数を年数で返す（数字のみ）
 }
 
-// 査定実衁Efunction doAssess(){
+// 面積単位変換（m²に統一 → 数字のみで転送）
+function convertArea(val,unit){
+  if(!val||isNaN(val)) return '';
+  var n=parseFloat(val);
+  // 坪で入力された場合、m²に変換（1坪≈3.306m²）
+  if(unit==='tsubo') n=n*3.306;
+  return String(Math.round(n)); // m²の数字のみ返す
+}
+
+// 査定実行
+function doAssess(){
   var type=document.getElementById('f-type').value;
   if(!type){alert('物件種別を選択してください');return;}
   
@@ -578,16 +599,17 @@ function updateAgeInput(){
   var addr=document.getElementById('f-addr').value.trim();
   if(!city&&!addr){alert('郵便番号で住所を検索してください');return;}
   
-  // メール受取は忁E��ではなぁE��EmailModeがOFFでも査定可能�E�E  if(emailMode){
+  // メール受取は必須ではない（emailModeがOFFでも査定可能）
+  if(emailMode){
     var nm=document.getElementById('f-name').value.trim();
     var em=document.getElementById('f-email').value.trim();
     if(!nm){alert('お名前を入力してください');return;}
-    if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('正しいメールアドレスを�E力してください');return;}
+    if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('正しいメールアドレスを入力してください');return;}
   }
   
   var cityParts=city.match(/^(.*?[市区町村])(.*)/)||[city,city,''];
   var mainCity=cityParts[1]||city;
-  var districtKey=(cityParts[2]||'').trim()||(addr.replace(/[0-9\-�E�\s]/g,'').substring(0,4))||'';
+  var districtKey=(cityParts[2]||'').trim()||(addr.replace(/[0-9\-－\s]/g,'').substring(0,4))||'';
   var cityDistrict=mainCity+'_'+districtKey;
   
   var params={
@@ -633,21 +655,21 @@ function showResult(data){
   
   if(data&&data.success&&data.aiAmount&&data.aiAmount>0){
     document.getElementById('r-amount').textContent=fmt(data.aiAmount);
-    document.getElementById('r-lower').textContent=fmt(data.aiLower)+'冁E;
-    document.getElementById('r-upper').textContent=fmt(data.aiUpper)+'冁E;
+    document.getElementById('r-lower').textContent=fmt(data.aiLower)+'円';
+    document.getElementById('r-upper').textContent=fmt(data.aiUpper)+'円';
     var barPct=Math.round(((data.aiAmount-data.aiLower)/(data.aiUpper-data.aiLower))*100);
     document.getElementById('r-bar').style.width=Math.max(5,barPct)+'%';
     
     var prec=data.precScore||precScore;
     document.getElementById('r-prec-fill').style.width=Math.max(5,prec)+'%';
     document.getElementById('r-prec-note').textContent=
-      prec>=80?'入力情堲が�E実しており、精度が高い状態です、E:
-      prec>=60?'面積�E築年数が揃ぁE��比輁E��精度が高い状態です、E:
-      prec>=40?'土地面積があるため概算を算�Eしました、E:
-               '住所惁E��のみです。面積�E築年数を追加すると精度が上がります、E;
+      prec>=80?'入力情報が充実しており、精度が高い状態です。':
+      prec>=60?'面積・築年数が揃い、比較的精度が高い状態です。':
+      prec>=40?'土地面積があるため概算を算出しました。':
+               '住所情報のみです。面積・築年数を追加すると精度が上がります。';
     
-    var meta='参�E事例！E+data.samples+'件　/　地区�E�E+(data.district||'市区町村平坁E)+
-      (data.unitPrice?'<br>坪単価目安！E+fmt(data.unitPrice)+'冁Em²':'');
+    var meta='参照事例：'+data.samples+'件　/　地区：'+(data.district||'市区町村平均')+
+      (data.unitPrice?'<br>坪単価目安：'+fmt(data.unitPrice)+'円/m²':'');
     document.getElementById('r-meta').innerHTML=meta;
   } else {
     document.getElementById('r-amount').textContent='査定中';
@@ -655,10 +677,10 @@ function showResult(data){
     document.getElementById('r-upper').textContent='─';
     document.getElementById('r-bar').style.width='50%';
     document.getElementById('r-prec-fill').style.width='10%';
-    document.getElementById('r-prec-note').textContent='チE�Eタベ�Eス接続中です。担当老E��り個別にご連絡します、E;
+    document.getElementById('r-prec-note').textContent='データベース接続中です。担当者より個別にご連絡します。';
     document.getElementById('r-meta').innerHTML=
-      'ご�E力いただぁE��物件惁E��を受け付けました、Ebr>'+
-      '拁E��宁E��士�E�瀧 幸治�E�より査定結果をご連絡ぁE��します、Ebr>'+
+      'ご入力いただいた物件情報を受け付けました。<br>'+
+      '担当宅建士（瀧 幸治）より査定結果をご連絡いたします。<br>'+
       '<strong style="color:var(--navy);">TEL: 072-702-8043</strong>';
   }
   
@@ -674,9 +696,9 @@ function resetForm(){
   updatePrec();
 }
 
-// エスゲープハチE��
+// エスケープハッチ
 function callPhone(){
-  alert('お電該ありがとぁE��ざいます、En072-702-8043 までお電該ください、En拁E��老E��お聞きしながら入力をサポ�Eトします、E);
+  alert('お電話ありがとうございます。\n072-702-8043 までお電話ください。\n担当者がお聞きしながら入力をサポートします。');
   window.location.href='tel:07270288043';
 }
 
@@ -692,16 +714,16 @@ function sendViaLine(){
     cond:document.getElementById('f-cond').value
   };
   
-  var msg='【AI査宁E入力途中チE�Eタ】\n\n'+
-    '物件種別�E�E+data.type+'\n'+
-    '市区町村！E+data.city+'\n'+
-    '番地�E�E+data.addr+'\n'+
-    '土地面積！E+data.land+'m²\n'+
-    '建物面積！E+data.bldg+'m²\n'+
-    '築年数�E�E+data.age+'年\n'+
-    '構造�E�E+data.struct+'\n'+
-    'コンチE��ション�E�E+data.cond+'\n\n'+
-    '上記�E惁E��をもとに、査定をお進めさせてぁE��だきます、E;
+  var msg='【AI査定 入力途中データ】\n\n'+
+    '物件種別：'+data.type+'\n'+
+    '市区町村：'+data.city+'\n'+
+    '番地：'+data.addr+'\n'+
+    '土地面積：'+data.land+'m²\n'+
+    '建物面積：'+data.bldg+'m²\n'+
+    '築年数：'+data.age+'年\n'+
+    '構造：'+data.struct+'\n'+
+    'コンディション：'+data.cond+'\n\n'+
+    '上記の情報をもとに、査定をお進めさせていただきます。';
   
   window.open('https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz&message='+encodeURIComponent(msg),'_blank');
 }
@@ -710,7 +732,3 @@ function sendViaLine(){
 
 </body>
 </html>
-
-
-
-
