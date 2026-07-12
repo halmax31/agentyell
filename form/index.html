@@ -134,6 +134,7 @@ select{
 /* SUBMIT */
 .btn-submit{ width:100%; padding:14px; border:none; border-radius:8px; background:var(--pink); color:#fff; font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; letter-spacing:.03em; margin-top:6px; transition:filter .2s; }
 .btn-submit:hover{ filter:brightness(.92); }
+.btn-submit:disabled{ background:#ccc; cursor:not-allowed; filter:none; }
 .submit-note{ text-align:center; font-size:10px; color:var(--muted); margin-top:7px; line-height:1.5; }
 
 /* TRUST */
@@ -212,6 +213,11 @@ select{
       <span class="tag">売却義務なし</span>
       <span class="tag">即時診断</span>
     </div>
+    <p style="font-size:12px;color:var(--muted,#666);margin-top:14px;line-height:1.8">
+      ご入力いただいた情報は、AI査定結果の作成・ご連絡のためにのみ利用します。
+      詳しくは<a href="/privacy/" style="color:inherit;text-decoration:underline">プライバシーポリシー</a>をご確認ください。<br>
+      ※AI査定は国土交通省reinfolibの実取引データをもとにした統計的概算値です。不動産鑑定評価法に基づく不動産鑑定評価書ではなく、実際の成約価格を保証するものではありません。
+    </p>
   </div>
 
   <div id="form-section">
@@ -389,7 +395,12 @@ select{
       <strong>✓ 完全無料</strong> ｜ <strong>売却義務なし</strong> ｜ 査定だけでもOK
     </div>
 
-    <button type="button" class="btn-submit" onclick="doAssess()">査定結果を表示</button>
+    <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--muted,#666);margin-top:14px;cursor:pointer">
+      <input type="checkbox" id="privacy-consent" onchange="document.getElementById('assess-submit-btn').disabled=!this.checked" style="margin-top:3px">
+      <span><a href="/privacy/" target="_blank" style="color:inherit;text-decoration:underline">プライバシーポリシー</a>に同意する</span>
+    </label>
+
+    <button type="button" id="assess-submit-btn" class="btn-submit" onclick="doAssess()" disabled>査定結果を表示</button>
     <div class="submit-note">※住所だけでも概算額が出ます<br>情報が増えるほど精度が上がります</div>
 
   </div>
@@ -730,5 +741,14 @@ function sendViaLine(){
 
 </script>
 
+<footer style="background:#0f2456;color:rgba(255,255,255,.55);padding:32px 5% 20px;font-size:12px;line-height:1.9;text-align:center">
+  <div style="max-width:900px;margin:0 auto">
+    <p style="margin-bottom:6px">合同会社エージェントエール（AGEnt-YeLL エージェントエール）</p>
+    <p style="margin-bottom:6px">宅地建物取引業 兵庫県知事免許（1）第300618号｜(一社)兵庫県宅地建物取引業協会 会員／(公社)近畿地区不動産公正取引協議会 加盟</p>
+    <p style="margin-bottom:6px">〒666-0017 兵庫県川西市火打1丁目20-10-1105｜TEL: <a href="tel:0727028043" style="color:inherit">072-702-8043</a>｜営業時間 10:00〜19:00（日曜・祝日定休）</p>
+    <p style="margin-bottom:10px"><a href="/privacy/" style="color:inherit;text-decoration:underline">プライバシーポリシー</a>　<a href="/terms/" style="color:inherit;text-decoration:underline">利用規約</a></p>
+    <p style="color:rgba(255,255,255,.3);font-size:11px">&copy; 2026 合同会社エージェントエール. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>
