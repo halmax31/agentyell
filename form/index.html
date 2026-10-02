@@ -488,8 +488,28 @@ select{
 // デプロイ URL の形式: https://script.google.com/macros/s/[SCRIPT_ID]/exec
 var GAS_URL='https://script.google.com/macros/s/AKfycbznHcSClJjF6sqtZpcuzamX5Az1TSvjYMVKP4UPSVOqK7FEQK6VFmyNT2Z_EHiW8JG0/exec'; // AGEnt-YeLL Assessment API
 
+// ====== Supabase（問い合わせ・査定ログの保存先） ======
+// anon/publishable key はクライアント公開前提のキーです。読み取り・更新・削除は
+// RLS（Row Level Security）で遮断し、INSERTのみ許可するポリシーをDB側に設定しています。
+var SUPABASE_URL='https://jbjpuqjggecagfntuuzy.supabase.co';
+var SUPABASE_ANON_KEY='sb_publishable_w_bTql6117ECAnAxFyfL5g_4q3KvaTx';
+
+function supaInsert(table,row){
+  fetch(SUPABASE_URL+'/rest/v1/'+table,{
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_ANON_KEY,
+      'Authorization':'Bearer '+SUPABASE_ANON_KEY,
+      'Content-Type':'application/json',
+      'Prefer':'return=minimal'
+    },
+    body:JSON.stringify(row)
+  }).catch(function(e){ console.warn('[supabase] insert failed',table,e); });
+}
+
 var emailMode=false; // デフォルト OFF（ユーザーが選択可能）
 var precScore=0;
+var lastAssessProps=null; // doAssess()で構築し、showResult()でSupabase保存に使う
 
 // 初期化時にメールモード OFF + チェック非表示 + クエリパラメータ自動入力
 window.addEventListener('load',function(){
@@ -653,7 +673,27 @@ function doAssess(){
   var mainCity=cityParts[1]||city;
   var districtKey=(cityParts[2]||'').trim()||(addr.replace(/[0-9\-－\s]/g,'').substring(0,4))||'';
   var cityDistrict=mainCity+'_'+districtKey;
-  
+
+  // Supabase保存用（showResultで結果とあわせて書き込む）
+  var landM2=convertArea(document.getElementById('f-land').value,document.getElementById('f-land-unit').value);
+  var bldgM2=convertArea(document.getElementById('f-bldg').value,document.getElementById('f-bldg-unit').value);
+  var ageYears=buildAge();
+  lastAssessProps={
+    city_district:cityDistrict,
+    property_type:type,
+    land_area_m2:landM2?parseInt(landM2,10):null,
+    building_area_m2:bldgM2?parseInt(bldgM2,10):null,
+    age_years:ageYears?parseInt(ageYears,10):null,
+    structure:document.getElementById('f-struct').value||null,
+    condition:document.getElementById('f-cond').value||null,
+    precision_score:precScore,
+    is_inquiry:emailMode,
+    user_name:emailMode?document.getElementById('f-name').value.trim():null,
+    user_email:emailMode?document.getElementById('f-email').value.trim():null,
+    user_phone:emailMode?(document.getElementById('f-tel').value.trim()||null):null,
+    property_address:emailMode?((city+' '+addr).trim()):null
+  };
+
   var params={
     action:'assess',
     cityDistrict:cityDistrict,
@@ -728,6 +768,56 @@ function showResult(data){
   
   if(data&&data.emailSent){
     document.getElementById('email-sent').style.display='block';
+  }
+
+  logAssessmentToSupabase(data);
+}
+
+// 査定結果をSupabaseに記録（フォーム操作をブロックしない非同期・失敗は無視）
+function logAssessmentToSupabase(data){
+  if(!lastAssessProps) return;
+  var ok=!!(data&&data.success&&data.aiAmount&&data.aiAmount>0);
+  var amount=ok?Math.round(data.aiAmount):null;
+  var lower=ok?Math.round(data.aiLower):null;
+  var upper=ok?Math.round(data.aiUpper):null;
+
+  // 1) すべての査定実行を匿名ログとして記録（コンバージョンファネル集計用）
+  supaInsert('silent_assessments',{
+    city_district:lastAssessProps.city_district,
+    property_type:lastAssessProps.property_type,
+    land_area_m2:lastAssessProps.land_area_m2,
+    building_area_m2:lastAssessProps.building_area_m2,
+    age_years:lastAssessProps.age_years,
+    structure:lastAssessProps.structure,
+    condition:lastAssessProps.condition,
+    precision_score:lastAssessProps.precision_score,
+    assessed_amount:amount,
+    is_inquiry:lastAssessProps.is_inquiry,
+    user_agent:navigator.userAgent,
+    referer_source:document.referrer||'direct'
+  });
+
+  // 2) メール受け取りを選択したユーザーのみ、連絡先付きで問い合わせとして記録
+  if(lastAssessProps.is_inquiry){
+    supaInsert('assessment_inquiries',{
+      city_district:lastAssessProps.city_district,
+      property_type:lastAssessProps.property_type,
+      land_area_m2:lastAssessProps.land_area_m2,
+      building_area_m2:lastAssessProps.building_area_m2,
+      age_years:lastAssessProps.age_years,
+      structure:lastAssessProps.structure,
+      condition:lastAssessProps.condition,
+      user_name:lastAssessProps.user_name,
+      user_email:lastAssessProps.user_email,
+      user_phone:lastAssessProps.user_phone,
+      property_address:lastAssessProps.property_address,
+      precision_score:lastAssessProps.precision_score,
+      assessed_amount:amount,
+      assessed_lower:lower,
+      assessed_upper:upper,
+      status:ok?'new':'pending',
+      user_agent:navigator.userAgent
+    });
   }
 }
 
