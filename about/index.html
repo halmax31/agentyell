@@ -73,9 +73,9 @@
 
 :root{
 
-  --navy:#1C3B8C;--navy-d:#0f2456;--navy-deep:#070a15;
+  --navy:#1C3B8C;--navy-d:#0F2660;--navy-deep:#071d4d;
 
-  --pink:#E84080;--pink-l:#f25a98;
+  --pink:#E84080;--pink-l:#F0558A;
 
   --white:#fff;--text:#1a1a1a;
 
@@ -166,6 +166,8 @@ a{color:inherit;text-decoration:none}
 .hnav-link[aria-current]{color:#fff;border-bottom:1px solid var(--pink)}
 
 .hact{display:flex;align-items:center;gap:10px}
+.htel{font-size:13px;font-weight:700;color:#fff;letter-spacing:.04em}
+.htel-note{font-size:10px;color:rgba(255,255,255,.5)}
 
 
 
@@ -383,6 +385,11 @@ a{color:inherit;text-decoration:none}
     </nav>
 
     <div class="hact">
+
+      <div>
+        <a href="tel:0727028043" class="htel">072-702-8043</a>
+        <div class="htel-note">平日・土 10:00〜19:00</div>
+      </div>
 
       <a href="/form/" class="btn btn-sm btn-pk">査定する</a>
 

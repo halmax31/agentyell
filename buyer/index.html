@@ -112,14 +112,16 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Serif+Display:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --navy: #1C3B8C;
-  --navy-d: #0F1F4D;
-  --navy-l: #2A4FA0;
+  --navy-d: #0F2660;
+  --navy-deep: #071d4d;
+  --navy-l: #2d4aa8;
   --pink: #E84080;
+  --pink-l: #F0558A;
   --cream: #F8F5F0;
   --white: #FFFFFF;
   --text: #1A1A1A;
@@ -127,7 +129,8 @@
   --light: #999999;
   --border: #E0DDD9;
   --sans: 'Noto Sans JP', sans-serif;
-  --serif: 'DM Serif Display', serif;
+  --serif: 'Noto Serif JP', serif;
+  --disp: 'DM Serif Display', serif;
 }
 
 *, *::before, *::after {
@@ -209,6 +212,14 @@ img {
 
 .nav-links a:hover {
   color: var(--pink);
+}
+
+.htel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-d);
+  letter-spacing: .04em;
+  white-space: nowrap;
 }
 
 .lang-switcher {
@@ -768,10 +779,13 @@ footer {
     <a href="/" class="logo">AGEnt-YeLL</a>
     <nav class="nav-group">
       <div class="nav-links">
-        <a href="/">ホーム</a>
+        <a href="/akiya/">空き家売却</a>
+        <a href="/area/">対応エリア</a>
+        <a href="/about/">会社概要</a>
         <a href="#services">サービス</a>
         <a href="#faq">よくある質問</a>
       </div>
+      <a href="tel:0727028043" class="htel">072-702-8043</a>
       <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=181zlaqz" class="cta-primary" target="_blank" rel="noopener" data-track="header-line-cta">無料相談</a>
     </nav>
   </div>
