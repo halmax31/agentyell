@@ -50,3 +50,28 @@
 .vc-reply{margin-top:12px;padding:10px 12px;background:#F8F5F0;border-left:3px solid #1C3B8C;font-size:12px;line-height:1.8;color:#333}
 .vc-kind{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:12px;background:rgba(28,59,140,.08);color:#1C3B8C;border:1px solid rgba(28,59,140,.15)}
 @media(max-width:600px){.cms-dl{grid-template-columns:110px 1fr}.cms-article h1{font-size:22px}}
+/* コラムの分類(大/エリア)・本文の飾り */
+.cms-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 24px}
+.cms-chips-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%}
+.cms-chips-label{font-size:12px;color:#5a5a6a;font-weight:700}
+.cms-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid #E0DDD5;border-radius:20px;font-size:13px;color:#1a1a2e;text-decoration:none;background:#fff}
+.cms-chip small{color:#5a5a6a;font-size:11px}
+.cms-chip.on{background:var(--navy,#1C3B8C);border-color:var(--navy,#1C3B8C);color:#fff}
+.cms-chip.on small{color:#dfe6ff}
+.cms-callout{border-radius:8px;padding:14px 16px;margin:22px 0;border-left:5px solid #1C3B8C;background:#eef3ff}
+.cms-callout p{margin:0 0 6px;font-size:15px;line-height:1.9}
+.cms-callout p:last-child{margin-bottom:0}
+.cms-callout-title{font-weight:700;color:#1C3B8C;font-size:13px !important;letter-spacing:.05em}
+.cms-callout.warn{border-left-color:#c5221f;background:#fff1f0}.cms-callout.warn .cms-callout-title{color:#c5221f}
+.cms-callout.note{border-left-color:#188038;background:#eefaf1}.cms-callout.note .cms-callout-title{color:#188038}
+.cms-callout.box{border-left-color:#E84080;background:#fff4f8}.cms-callout.box .cms-callout-title{color:#E84080}
+.cms-faq{border:1px solid #E0DDD5;border-radius:8px;margin:14px 0;overflow:hidden}
+.cms-faq .q{margin:0;padding:12px 16px;background:#F8F5F0;font-weight:700;font-size:15px}
+.cms-faq .a{margin:0;padding:12px 16px;font-size:15px}
+.cms-article table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;word-break:break-word}
+.cms-article th,.cms-article td{border:1px solid #E0DDD5;padding:8px 10px;text-align:left;vertical-align:top}
+.cms-article th{background:#F8F5F0}
+.cms-article figure{margin:22px 0;text-align:center}
+.cms-article figcaption{font-size:12px;color:#5a5a6a;margin-top:6px}
+.cms-article blockquote{margin:18px 0;padding:6px 16px;border-left:4px solid #E0DDD5;color:#5a5a6a;background:#fafafa}
+.cms-article p a,.cms-article li a,.cms-article td a,.cms-article .cms-crumb a{color:#1C3B8C}
