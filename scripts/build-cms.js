@@ -285,7 +285,7 @@ function updateSitemap(props, posts) {
   let x = rd(f);
   x = x.replace(/\s*<!-- cms:start -->[\s\S]*?<!-- cms:end -->/, '');
   const today = new Date().toISOString().slice(0, 10);
-  const urls = [`<url><loc>${SITE}/blog/</loc><lastmod>${today}</lastmod><priority>0.7</priority></url>`]
+  const urls = (posts.length ? [`<url><loc>${SITE}/blog/</loc><lastmod>${today}</lastmod><priority>0.7</priority></url>`] : [])
     .concat(posts.map((p) => `<url><loc>${SITE}/blog/${encodeURIComponent(p.id)}/</loc><lastmod>${p.updatedAt || p.date}</lastmod><priority>0.6</priority></url>`))
     .concat(props.filter((p) => p.status !== '成約済').map((p) => `<url><loc>${SITE}/sell/${encodeURIComponent(p.id)}/</loc><lastmod>${p.updatedAt || today}</lastmod><priority>0.6</priority></url>`));
   x = x.replace('</urlset>', `  <!-- cms:start -->\n  ${urls.join('\n  ')}\n  <!-- cms:end -->\n</urlset>`);
