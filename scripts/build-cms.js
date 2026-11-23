@@ -209,14 +209,15 @@ function propDetail(p) {
   });
 }
 
-// ---------- ブログ ----------
+// ---------- ブログ(カテゴリ大中小・エリアのまとめページつき) ----------
+const catOf = (p) => p.catL || p.category || '';
 function postCard(p) {
   const href = `/blog/${encodeURIComponent(p.id)}/`;
   const img = p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" referrerpolicy="no-referrer">` : '<div class="cms-card-noimg">AGEnt-YeLL</div>';
   return `<article class="cms-card">
   <a class="cms-card-img" href="${href}">${img}</a>
   <div class="cms-card-body">
-    <div class="cms-post-meta"><span class="cms-cat">${esc(p.category)}</span><time datetime="${p.date}">${jpDate(p.date)}</time></div>
+    <div class="cms-post-meta"><span class="cms-cat">${esc([catOf(p), p.catM].filter(Boolean).join(' / '))}</span><time datetime="${p.date}">${jpDate(p.date)}</time></div>
     <h3><a href="${href}">${esc(p.title)}</a></h3>
     <p class="cms-note" style="margin:0">${esc(p.summary)}</p>
     <a class="cms-btn" href="${href}">続きを読む</a>
@@ -224,46 +225,83 @@ function postCard(p) {
 </article>`;
 }
 
-function blogIndex(posts) {
-  const main = `<div class="cms-wrap">
-  <p class="cms-crumb"><a href="/">トップ</a> ＞ コラム</p>
-  <h1 style="font-size:26px;margin:8px 0 6px">不動産コラム</h1>
-  <p class="cms-note">川西市を中心に、不動産の売却・購入・空き家・相続について、宅建士が解説します。</p>
-  ${posts.length ? `<div class="cms-grid">${posts.map(postCard).join('\n')}</div>` : '<div class="cms-empty">コラムは準備中です。</div>'}
-</div>`;
-  return page({
-    title: `不動産コラム｜${ORG}`,
-    desc: '川西市を中心とした不動産の売却・購入・空き家・相続に関するコラム。宅地建物取引士が分かりやすく解説します。',
-    path: '/blog/', ld: [crumbLd([['AGEnt-YeLL', '/'], ['コラム', '/blog/']])], main, noindex: !posts.length,
-  });
+// カテゴリ(大)・エリアのリンク一覧
+function blogNav(cats, areas, current) {
+  const cl = cats.filter((c) => c.count > 0).map((c) => `<a class="cms-chip${current === 'c:' + c.slug ? ' on' : ''}" href="/blog/c/${esc(c.slug)}/">${esc(c.name)}<small>${c.count}</small></a>`).join('');
+  const al = areas.filter((a) => a.count > 0).map((a) => `<a class="cms-chip${current === 'a:' + a.slug ? ' on' : ''}" href="/blog/area/${esc(a.slug)}/">${esc(a.city)}<small>${a.count}</small></a>`).join('');
+  return `<nav class="cms-chips" aria-label="コラムの分類">
+  <a class="cms-chip${!current ? ' on' : ''}" href="/blog/">すべて</a>${cl}
+  ${al ? `<div class="cms-chips-row"><span class="cms-chips-label">エリア</span>${al}</div>` : ''}
+</nav>`;
 }
 
-function blogPost(p) {
+function blogListPage({ title, h1, lead, path: p, posts, cats, areas, current, crumb, noindex, mids }) {
+  const groups = mids && mids.length ? mids.filter((m) => m.count > 0).map((m) => {
+    const ps = posts.filter((x) => x.catM === m.name);
+    return ps.length ? `<h2 class="cms-h2">${esc(m.name)}</h2><div class="cms-grid">${ps.map(postCard).join('\n')}</div>` : '';
+  }).join('') + (() => { const rest = posts.filter((x) => !mids.some((m) => m.name === x.catM)); return rest.length ? `<div class="cms-grid">${rest.map(postCard).join('\n')}</div>` : ''; })()
+    : `<div class="cms-grid">${posts.map(postCard).join('\n')}</div>`;
+  const main = `<div class="cms-wrap">
+  <p class="cms-crumb"><a href="/">トップ</a> ＞ ${crumb}</p>
+  <h1 style="font-size:26px;margin:8px 0 6px">${esc(h1)}</h1>
+  <p class="cms-note">${esc(lead)}</p>
+  ${blogNav(cats, areas, current)}
+  ${posts.length ? groups : '<div class="cms-empty">コラムは準備中です。</div>'}
+</div>`;
+  return page({ title: `${title}｜${ORG}`, desc: lead, path: p, main, noindex: noindex || !posts.length,
+    ld: [crumbLd([['AGEnt-YeLL', '/'], ['コラム', '/blog/']].concat(p === '/blog/' ? [] : [[h1, p]]))] });
+}
+
+function blogIndex(posts, cats, areas) {
+  return blogListPage({ title: '不動産コラム', h1: '不動産コラム',
+    lead: '川西市を中心に、不動産の売却・購入・空き家・相続について、宅建士が解説します。', path: '/blog/', posts, cats, areas, current: '',
+    crumb: 'コラム', noindex: !posts.length });
+}
+
+// 関連記事: 同じ中分類 → 同じ大分類 → 同じエリア の順
+function relatedPosts(p, posts) {
+  const score = (x) => (p.catM && x.catM === p.catM ? 4 : 0) + (catOf(p) && catOf(x) === catOf(p) ? 2 : 0) + (p.areaCity && x.areaCity === p.areaCity ? 1 : 0)
+    + (p.tags || []).filter((t) => (x.tags || []).includes(t)).length * 0.5;
+  return posts.filter((x) => x.id !== p.id && score(x) > 0).sort((a, b) => score(b) - score(a) || (a.date < b.date ? 1 : -1)).slice(0, 4);
+}
+
+function blogPost(p, posts, cats) {
   const url = `/blog/${encodeURIComponent(p.id)}/`;
+  const catLink = catOf(p) ? (() => { const c = cats.find((x) => x.name === catOf(p)); return c && c.count > 0 ? `<a href="/blog/c/${esc(c.slug)}/">${esc(catOf(p))}</a>` : esc(catOf(p)); })() : '';
+  const rel = relatedPosts(p, posts);
   const main = `<article class="cms-article">
-  <p class="cms-crumb"><a href="/">トップ</a> ＞ <a href="/blog/">コラム</a> ＞ ${esc(p.title)}</p>
-  <div class="cms-post-meta"><span class="cms-cat">${esc(p.category)}</span>
+  <p class="cms-crumb"><a href="/">トップ</a> ＞ <a href="/blog/">コラム</a>${catLink ? ` ＞ ${catLink}` : ''} ＞ ${esc(p.title)}</p>
+  <div class="cms-post-meta"><span class="cms-cat">${esc([catOf(p), p.catM, p.catS].filter(Boolean).join(' / '))}</span>
     <time datetime="${p.date}">${jpDate(p.date)}</time>
     ${p.updatedAt && p.updatedAt !== p.date ? `<span>更新 <time datetime="${p.updatedAt}">${jpDate(p.updatedAt)}</time></span>` : ''}
     ${p.author ? `<span>執筆：${esc(p.author)}</span>` : ''}</div>
   <h1>${esc(p.title)}</h1>
   ${p.image ? `<img class="cms-eyecatch" src="${esc(p.image)}" alt="${esc(p.title)}" referrerpolicy="no-referrer">` : ''}
   ${p.bodyHtml}
-  ${p.tags.length ? `<div class="cms-tags">${p.tags.map((t) => `<span>#${esc(t)}</span>`).join('')}</div>` : ''}
+  ${(p.tags || []).length ? `<div class="cms-tags">${p.tags.map((t) => `<span>#${esc(t)}</span>`).join('')}</div>` : ''}
   <div class="cms-cta">
     <p style="margin-bottom:8px;font-weight:700">不動産のご相談は、お気軽に</p>
     <a href="/form/">無料でAI査定</a>
     <a class="alt" href="tel:0727028043">072-702-8043</a>
   </div>
+  ${rel.length ? `<h2 class="cms-h2">あわせて読みたい</h2><div class="cms-grid">${rel.map(postCard).join('\n')}</div>` : ''}
 </article>`;
+  const crumbs = [['AGEnt-YeLL', '/'], ['コラム', '/blog/']];
+  const c = cats.find((x) => x.name === catOf(p));
+  if (c && c.count > 0) crumbs.push([c.name, `/blog/c/${c.slug}/`]);
+  crumbs.push([p.title, url]);
   const ld = [
-    crumbLd([['AGEnt-YeLL', '/'], ['コラム', '/blog/'], [p.title, url]]),
+    crumbLd(crumbs),
     { '@context': 'https://schema.org', '@type': 'Article', headline: p.title, description: p.seoDescription,
       datePublished: p.date, dateModified: p.updatedAt || p.date, mainEntityOfPage: SITE + url,
-      ...(p.image ? { image: [p.image] } : {}),
+      ...(p.image ? { image: [p.image] } : {}), ...(catOf(p) ? { articleSection: catOf(p) } : {}), ...((p.tags || []).length ? { keywords: p.tags.join(',') } : {}),
       author: p.author ? { '@type': 'Person', name: p.author } : { '@type': 'Organization', name: ORG },
       publisher: { '@type': 'Organization', name: ORG, logo: { '@type': 'ImageObject', url: SITE + '/assets/apple-touch-icon.png' } } },
   ];
+  // よくある質問(Q&A)があれば、検索結果用の構造化データも付ける
+  const faq = [...String(p.bodyHtml).matchAll(/<div class="cms-faq"><p class="q">([\s\S]*?)<\/p><p class="a">([\s\S]*?)<\/p><\/div>/g)]
+    .map((m) => ({ '@type': 'Question', name: m[1].replace(/<[^>]+>/g, '').replace(/^Q\.\s*/, ''), acceptedAnswer: { '@type': 'Answer', text: m[2].replace(/<[^>]+>/g, '') } }));
+  if (faq.length) ld.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq });
   return page({ title: `${p.title}｜${ORG}`, desc: p.seoDescription, path: url, image: p.image, ld, main, type: 'article' });
 }
 
@@ -280,12 +318,14 @@ function reviewHtml(r) {
 }
 
 // ---------- sitemap ----------
-function updateSitemap(props, posts) {
+function updateSitemap(props, posts, cats, areas) {
   const f = 'sitemap.xml';
   let x = rd(f);
   x = x.replace(/\s*<!-- cms:start -->[\s\S]*?<!-- cms:end -->/, '');
   const today = new Date().toISOString().slice(0, 10);
   const urls = (posts.length ? [`<url><loc>${SITE}/blog/</loc><lastmod>${today}</lastmod><priority>0.7</priority></url>`] : [])
+    .concat((cats || []).filter((c) => c.count > 0).map((c) => `<url><loc>${SITE}/blog/c/${c.slug}/</loc><lastmod>${today}</lastmod><priority>0.5</priority></url>`))
+    .concat((areas || []).filter((a) => a.count > 0).map((a) => `<url><loc>${SITE}/blog/area/${a.slug}/</loc><lastmod>${today}</lastmod><priority>0.5</priority></url>`))
     .concat(posts.map((p) => `<url><loc>${SITE}/blog/${encodeURIComponent(p.id)}/</loc><lastmod>${p.updatedAt || p.date}</lastmod><priority>0.6</priority></url>`))
     .concat(props.filter((p) => p.status !== '成約済').map((p) => `<url><loc>${SITE}/sell/${encodeURIComponent(p.id)}/</loc><lastmod>${p.updatedAt || today}</lastmod><priority>0.6</priority></url>`));
   x = x.replace('</urlset>', `  <!-- cms:start -->\n  ${urls.join('\n  ')}\n  <!-- cms:end -->\n</urlset>`);
@@ -297,9 +337,11 @@ function updateSitemap(props, posts) {
   prepareOut();
   loadTemplate();
   const log = [];
-  let props = null, posts = null, reviews = null;
+  let props = null, posts = null, reviews = null, cats = [], areas = [];
   try { props = (await getJson('properties')).items.filter(safeId); } catch (e) { log.push('物件の取得に失敗(今のページを使用): ' + e.message); }
   try { posts = (await getJson('posts', '&full=1')).items.filter(safeId); } catch (e) { log.push('ブログの取得に失敗(今のページを使用): ' + e.message); }
+  try { cats = (await getJson('categories')).items.filter((c) => /^[A-Za-z0-9-]+$/.test(c.slug)); } catch (e) { log.push('カテゴリの取得に失敗(分類ページなし): ' + e.message); }
+  try { areas = (await getJson('areas')).items.filter((a) => /^[A-Za-z0-9-]+$/.test(a.slug)); } catch (e) { log.push('エリアの取得に失敗(エリアページなし): ' + e.message); }
   try { reviews = (await getJson('reviews')).items; } catch (e) { log.push('口コミの取得に失敗(今のページを使用): ' + e.message); }
 
   if (props) {
@@ -308,14 +350,23 @@ function updateSitemap(props, posts) {
     log.push(`物件 ${props.length}件`);
   }
   if (posts) {
-    wr('blog/index.html', blogIndex(posts));
-    posts.forEach((p) => wr(`blog/${p.id}/index.html`, blogPost(p)));
+    // カテゴリ・エリアの記事数は、公開中の記事から数え直す(APIの数と食い違わないように)
+    cats.forEach((c) => { c.count = posts.filter((p) => catOf(p) === c.name).length; });
+    areas.forEach((a) => { a.count = posts.filter((p) => p.areaCity === a.city).length; });
+    wr('blog/index.html', blogIndex(posts, cats, areas));
+    cats.filter((c) => c.count > 0).forEach((c) => wr(`blog/c/${c.slug}/index.html`, blogListPage({
+      title: `${c.name}のコラム`, h1: `${c.name}のコラム`, lead: `${c.name}に関する不動産コラムの一覧です。`, path: `/blog/c/${c.slug}/`,
+      posts: posts.filter((p) => catOf(p) === c.name), cats, areas, current: 'c:' + c.slug, crumb: `<a href="/blog/">コラム</a> ＞ ${esc(c.name)}`, mids: c.mids })));
+    areas.filter((a) => a.count > 0).forEach((a) => wr(`blog/area/${a.slug}/index.html`, blogListPage({
+      title: `${a.city}の不動産コラム`, h1: `${a.city}の不動産コラム`, lead: `${a.city}の不動産(売却・購入・空き家・相続・暮らし)に関するコラムの一覧です。`, path: `/blog/area/${a.slug}/`,
+      posts: posts.filter((p) => p.areaCity === a.city), cats, areas, current: 'a:' + a.slug, crumb: `<a href="/blog/">コラム</a> ＞ ${esc(a.city)}` })));
+    posts.forEach((p) => wr(`blog/${p.id}/index.html`, blogPost(p, posts, cats)));
     log.push(`ブログ ${posts.length}件`);
   }
   if (reviews) {
     wr('voice/index.html', inject(rd('voice/index.html'), 'REVIEWS', reviews.map(reviewHtml).join('\n')));
     log.push(`口コミ ${reviews.length}件`);
   }
-  if (props || posts) updateSitemap(props || [], posts || []);
+  if (props || posts) updateSitemap(props || [], posts || [], cats, areas);
   console.log('[build-cms] ' + (log.join(' / ') || '変更なし') + '  → ' + path.relative(process.cwd(), OUT || '.'));
 })().catch((e) => { console.error('[build-cms] エラー(サイトの公開は続行):', e); process.exit(0); });
