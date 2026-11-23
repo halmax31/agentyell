@@ -1,0 +1,52 @@
+/* 物件・ブログ・口コミ(スプレッドシート連携ページ)の共通スタイル */
+.cms-wrap{max-width:960px;margin:0 auto;padding:32px 20px 24px}
+.cms-h2{font-size:20px;font-weight:700;color:var(--navy,#1C3B8C);margin:40px 0 16px;padding-left:10px;border-left:4px solid var(--pink,#E84080)}
+.cms-empty{background:#F8F5F0;border:1px solid #E0C6B0;border-radius:8px;padding:20px 24px;text-align:center;color:var(--navy,#1C3B8C);font-weight:500;margin-bottom:32px}
+.cms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-bottom:32px}
+.cms-card{background:#fff;border:1px solid #E0DDD5;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.cms-card-img{display:block;width:100%;aspect-ratio:4/3;background:#F0EEE8;overflow:hidden}
+.cms-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cms-card-noimg{display:flex;align-items:center;justify-content:center;height:100%;color:#aaa;font-size:13px}
+.cms-card-body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.cms-card-body h3{font-size:16px;line-height:1.5;margin:0}
+.cms-card-body h3 a{color:var(--text-dark,#1a1a2e);text-decoration:none}
+.cms-badge{align-self:flex-start;font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;background:var(--pink,#E84080);color:#fff}
+.cms-badge.talk{background:#e37400}
+.cms-badge.sold{background:#5f6368}
+.cms-price{font-size:22px;font-weight:700;color:var(--navy,#1C3B8C)}
+.cms-specs{list-style:none;margin:0;padding:0;font-size:13px;color:#5a5a6a;display:grid;gap:4px}
+.cms-specs b{color:#333;font-weight:600;margin-right:6px}
+.cms-btn{display:block;text-align:center;background:var(--navy,#1C3B8C);color:#fff;padding:10px 16px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:600;margin-top:auto}
+.cms-sold .cms-card-img img{filter:grayscale(.6)}
+.cms-note{font-size:12px;color:#5a5a6a;line-height:1.8;margin:8px 0 24px}
+/* 物件詳細 */
+.cms-gallery{display:grid;gap:8px;margin-bottom:24px}
+.cms-gallery img{width:100%;border-radius:6px;display:block}
+.cms-gallery .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.cms-dl{display:grid;grid-template-columns:140px 1fr;border-top:1px solid #E0DDD5;margin:16px 0 28px;font-size:14px}
+.cms-dl dt,.cms-dl dd{padding:10px 8px;border-bottom:1px solid #E0DDD5;margin:0}
+.cms-dl dt{background:#F8F5F0;font-weight:600;color:#333}
+.cms-desc{white-space:pre-wrap;line-height:1.9;font-size:15px;margin:12px 0 24px}
+.cms-cta{background:#F8F5F0;border-radius:8px;padding:24px;text-align:center;margin:32px 0}
+.cms-cta a{display:inline-block;margin:6px;padding:12px 24px;border-radius:6px;background:var(--pink,#E84080);color:#fff;text-decoration:none;font-weight:700}
+.cms-cta a.alt{background:var(--navy,#1C3B8C)}
+/* ブログ */
+.cms-post-meta{font-size:12px;color:#5a5a6a;display:flex;gap:12px;flex-wrap:wrap;margin:6px 0 4px}
+.cms-cat{color:var(--pink,#E84080);font-weight:700}
+.cms-article{max-width:760px;margin:0 auto;padding:32px 20px}
+.cms-article h1{font-size:26px;line-height:1.5;margin:8px 0 12px}
+.cms-article h2{font-size:21px;margin:36px 0 12px;padding-bottom:6px;border-bottom:2px solid #E84080}
+.cms-article h3{font-size:18px;margin:28px 0 10px}
+.cms-article p{line-height:2;margin:0 0 18px;font-size:16px}
+.cms-article ul{margin:0 0 18px 1.4em;line-height:1.9}
+.cms-article figure{margin:20px 0}
+.cms-article img{max-width:100%;height:auto;border-radius:6px}
+.cms-eyecatch{width:100%;border-radius:8px;margin:12px 0 24px;display:block}
+.cms-tags{margin-top:24px;font-size:12px;color:#5a5a6a}
+.cms-tags span{display:inline-block;background:#F0EEE8;border-radius:12px;padding:2px 10px;margin:0 6px 6px 0}
+.cms-crumb{font-size:12px;color:#5a5a6a;margin-bottom:8px}
+.cms-crumb a{color:inherit}
+/* 口コミ */
+.vc-reply{margin-top:12px;padding:10px 12px;background:#F8F5F0;border-left:3px solid #1C3B8C;font-size:12px;line-height:1.8;color:#333}
+.vc-kind{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:12px;background:rgba(28,59,140,.08);color:#1C3B8C;border:1px solid rgba(28,59,140,.15)}
+@media(max-width:600px){.cms-dl{grid-template-columns:110px 1fr}.cms-article h1{font-size:22px}}

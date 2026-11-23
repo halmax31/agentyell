@@ -1,0 +1,13 @@
+/* スマホ表示の共通補正(全ページ) */
+html{-webkit-text-size-adjust:100%}
+footer a{display:inline-block}            /* リンク文字の途中で折り返さない */
+@media (max-width:800px){
+  /* 売物件ページ: ロゴと電話番号を1行にまとめる */
+  header:not(.header){flex-direction:row !important;flex-wrap:wrap;gap:8px 14px !important;align-items:center;justify-content:space-between}
+  header:not(.header) .header-contact{width:auto !important}
+  /* 買いたい方ページ: ロゴ・電話・ボタンを1行に */
+  .header-inner{flex-wrap:nowrap !important;gap:10px !important}
+  .nav-group{width:auto !important;flex-direction:row !important;gap:10px !important;justify-content:flex-end}
+  .nav-group .htel{font-size:13px;white-space:nowrap}
+  .nav-group .cta-primary{padding:8px 12px !important;font-size:12px !important;white-space:nowrap}
+}
