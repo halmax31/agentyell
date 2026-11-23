@@ -748,7 +748,7 @@ function showResult(data){
                '住所情報のみです。面積・築年数を追加すると精度が上がります。';
     
     var meta='参照事例：'+data.samples+'件　/　地区：'+(data.district||'市区町村平均')+
-      (data.unitPrice?'<br>坪単価目安：'+fmt(data.unitPrice)+'円/m²':'');
+      (data.unitPrice?'<br>㎡単価の目安：'+fmt(data.unitPrice)+'円/㎡（坪単価に換算すると約'+fmt(Math.round(data.unitPrice*3.30579))+'円/坪）':'');
     document.getElementById('r-meta').innerHTML=meta;
   } else {
     document.getElementById('r-amount').textContent='査定中';
