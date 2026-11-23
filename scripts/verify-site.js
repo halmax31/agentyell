@@ -27,7 +27,7 @@ const PAGES = [
   'area/neyagawa/index.html', 'area/nishinomiya/index.html', 'area/osaka/index.html',
   'area/takarazuka/index.html', 'buyer/index.html', 'for-agent/index.html',
   'form/index.html', 'privacy/index.html', 'sell/index.html', 'staff/koji/index.html',
-  'voice/index.html', 'terms/index.html'
+  'voice/index.html', 'terms/index.html', 'blog/index.html'
 ];
 
 const AREA_PAGES = [

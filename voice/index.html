@@ -153,6 +153,7 @@ footer a{color:rgba(255,255,255,.5)}
   gtag('js', new Date());
   gtag('config', 'G-1JHXRYR3V4');
 </script>
+<link rel="stylesheet" href="/assets/cms.css">
 </head>
 <body>
 
@@ -215,6 +216,8 @@ footer a{color:rgba(255,255,255,.5)}
           <span class="vc-good">📊 AI査定が決め手</span>
         </div>
       </article>
+<!--CMS:REVIEWS-->
+<!--/CMS:REVIEWS-->
     </div>
   </div>
 </section>
@@ -233,9 +236,33 @@ footer a{color:rgba(255,255,255,.5)}
           <label>あなたはどちらですか？ <span style="color:var(--pink)">*</span></label>
           <select name="type" id="r-type" required>
             <option value="">選択してください</option>
-            <option value="seller">成約者（売主として成約した）</option>
-            <option value="consult">相談のみ</option>
+            <option value="売却(成約)">売却で成約した</option>
+            <option value="購入(成約)">購入で成約した</option>
+            <option value="相談のみ">相談のみ</option>
+            <option value="その他">その他（他社経由・業者の方など）</option>
           </select>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="r-area">お住まいの地域 <span style="color:var(--pink)">*</span></label>
+            <input type="text" name="area" id="r-area" maxlength="30" placeholder="例：川西市" required>
+          </div>
+          <div class="field">
+            <label for="r-age">年代 <span style="color:var(--pink)">*</span></label>
+            <select name="age" id="r-age" required>
+              <option value="">選択してください</option>
+              <option>10代</option><option>20代</option><option>30代</option><option>40代</option>
+              <option>50代</option><option>60代</option><option>70代</option><option>80代以上</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="r-name">お名前（ニックネーム可・空欄でもOK）</label>
+          <input type="text" name="name" id="r-name" maxlength="20" placeholder="例：田中" autocomplete="off">
+          <p class="form-note" style="text-align:left;margin-top:6px">お名前を入れた場合も、地域・年代とあわせて「田中さん（川西市・50代）」のように掲載します。</p>
+        </div>
+        <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+          <label>この欄は空のままにしてください<input type="text" name="website" id="r-website" tabindex="-1" autocomplete="off"></label>
         </div>
         <div class="field">
           <label>評価 <span style="color:var(--pink)">*</span></label>
@@ -249,7 +276,7 @@ footer a{color:rgba(255,255,255,.5)}
         </div>
         <div class="field">
           <label>ご感想・コメント <span style="color:var(--pink)">*</span></label>
-          <textarea name="comment" id="r-comment" placeholder="率直なご感想をお聞かせください。" required></textarea>
+          <textarea name="comment" id="r-comment" placeholder="率直なご感想をお聞かせください。（10文字以上）" minlength="10" maxlength="1000" required></textarea>
         </div>
         <div class="submit-area">
           <button type="submit" class="btn-submit" data-track="voice-submit">
@@ -318,16 +345,32 @@ window.addEventListener('scroll',()=>{
   document.getElementById('float').classList.toggle('show',scrollY>500);
 },{passive:true});
 
+const REVIEW_API='https://script.google.com/macros/s/AKfycbznHcSClJjF6sqtZpcuzamX5Az1TSvjYMVKP4UPSVOqK7FEQK6VFmyNT2Z_EHiW8JG0/exec';
+const PAGE_LOADED=Date.now();
 document.getElementById('review-form-el').addEventListener('submit',async(e)=>{
   e.preventDefault();
-  const btn=e.target.querySelector('.btn-submit');
+  const f=e.target,btn=f.querySelector('.btn-submit');
+  const v=(id)=>(document.getElementById(id).value||'').trim();
+  const stars=(f.querySelector('input[name=stars]:checked')||{}).value||'';
+  const miss=[];
+  if(!v('r-type'))miss.push('あなたはどちらですか');
+  if(!stars)miss.push('評価');
+  if(!v('r-area'))miss.push('お住まいの地域');
+  if(!v('r-age'))miss.push('年代');
+  if(v('r-comment').length<10)miss.push('ご感想（10文字以上）');
+  if(miss.length){alert('次の項目を入力してください：\n・'+miss.join('\n・'));return;}
   btn.disabled=true;btn.innerHTML='送信中...';
-  setTimeout(()=>{
-    e.target.style.display='none';
+  try{
+    await fetch(REVIEW_API,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({type:'review',kind:v('r-type'),rating:stars,area:v('r-area'),age:v('r-age'),name:v('r-name'),
+        text:v('r-comment'),website:v('r-website'),elapsed:Date.now()-PAGE_LOADED})});
+    f.style.display='none';
     document.getElementById('success-box').classList.add('show');
-    btn.disabled=false;btn.innerHTML='声を投稿する';
-  },1000);
-  if(typeof window.clarity==='function')window.clarity('event','voice-submitted');
+    if(typeof window.clarity==='function')window.clarity('event','voice-submitted');
+  }catch(err){
+    alert('送信できませんでした。通信状況をご確認のうえ、もう一度お試しください。');
+  }
+  btn.disabled=false;btn.innerHTML='声を投稿する';
 });
 
 document.querySelectorAll('[data-track]').forEach(el=>{
