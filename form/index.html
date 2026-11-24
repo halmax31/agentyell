@@ -120,6 +120,14 @@ input:focus, select:focus{ border-color:var(--navy); box-shadow:0 0 0 3px rgba(2
 /* チェックボックス・ラジオは全幅指定の対象外(長方形になるのを防ぐ) */
 input[type=checkbox], input[type=radio]{ width:18px; height:18px; flex:none; padding:0; margin:2px 0 0; -webkit-appearance:auto; appearance:auto; accent-color:var(--navy); }
 
+/* チェックボックスは、端末ごとの描画に任せず、自前で正方形に描く(横長にならないように、幅・高さ・比率を固定) */
+input[type=checkbox]{ -webkit-appearance:none !important; appearance:none !important; box-sizing:border-box; display:inline-block; position:relative;
+  width:20px !important; min-width:20px; max-width:20px; height:20px !important; min-height:20px; max-height:20px; aspect-ratio:1/1; flex:0 0 20px;
+  padding:0 !important; margin:1px 0 0; border:2px solid #9aa4b8 !important; border-radius:4px !important; background:#fff; cursor:pointer; }
+input[type=checkbox]:checked{ background:var(--navy); border-color:var(--navy) !important; }
+input[type=checkbox]:checked::after{ content:''; position:absolute; left:5px; top:1px; width:5px; height:10px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
+input[type=checkbox]:focus-visible{ outline:2px solid var(--navy); outline-offset:2px; }
+
 select{ 
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat; background-position:right 12px center; padding-right:32px;
@@ -424,7 +432,7 @@ select{
     </div>
 
     <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--muted,#666);margin-top:14px;cursor:pointer">
-      <input type="checkbox" id="privacy-consent" onchange="document.getElementById('assess-submit-btn').disabled=!this.checked" style="margin-top:3px">
+      <input type="checkbox" id="privacy-consent" onchange="document.getElementById('assess-submit-btn').disabled=!this.checked">
       <span><a href="/privacy/" target="_blank" style="color:inherit;text-decoration:underline">プライバシーポリシー</a>に同意する</span>
     </label>
 
@@ -504,16 +512,16 @@ function supaInsert(table,row){
   }).catch(function(e){ console.warn('[supabase] insert failed',table,e); });
 }
 
-var emailMode=false; // デフォルト OFF（ユーザーが選択可能）
+var emailMode=true; // 初期状態はチェックあり（お客様が外すと、メールなしで査定できる）
 var precScore=0;
 var lastAssessProps=null; // doAssess()で構築し、showResult()でSupabase保存に使う
 
 // 初期化時にメールモード OFF + チェック非表示 + クエリパラメータ自動入力
 window.addEventListener('load',function(){
-  emailMode=false;
-  document.getElementById('tcheck').className='tcheck off';
-  document.getElementById('email-toggle').className='email-toggle off';
-  document.getElementById('email-fields').className='email-fields hide';
+  emailMode=true;
+  document.getElementById('tcheck').className='tcheck';
+  document.getElementById('email-toggle').className='email-toggle';
+  document.getElementById('email-fields').className='email-fields';
   
   // ◆ URLクエリパラメータを解析して自動入力
   var params = new URLSearchParams(window.location.search);
@@ -619,9 +627,9 @@ function updateAgeInput(){
 // メール切り替え（必須ではない）
 function toggleEmail(){
   emailMode=!emailMode;
-  document.getElementById('tcheck').className='tcheck'+(emailMode?'':'.off');
-  document.getElementById('email-toggle').className='email-toggle'+(emailMode?'':'.off');
-  document.getElementById('email-fields').className='email-fields'+(emailMode?'':'hide');
+  document.getElementById('tcheck').className='tcheck'+(emailMode?'':' off');
+  document.getElementById('email-toggle').className='email-toggle'+(emailMode?'':' off');
+  document.getElementById('email-fields').className='email-fields'+(emailMode?'':' hide');
 }
 
 // 築年数変換（プルダウン対応 → 数字のみで統一）
