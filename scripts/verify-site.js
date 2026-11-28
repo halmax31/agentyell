@@ -138,19 +138,23 @@ for (const p of PAGES) {
 }
 
 // ---------- 6. form.html: consent checkbox + AI disclaimer (static check) ----------
-section('6. form.html: 同意チェックボックス・免責文(静的チェック)');
+section('6. form.html: 同意の表示・必須/任意の区別・免責文(静的チェック)');
 {
   const text = readPage('form/index.html');
-  if (text.includes('id="privacy-consent"') && text.includes('disabled')) {
-    pass('form.html: 同意チェックボックスと初期disabledを確認');
-  } else {
-    fail('form.html: 同意チェックボックス or disabled属性が見つからない');
-  }
-  if (/document\.getElementById\('assess-submit-btn'\)\.disabled\s*=\s*!this\.checked/.test(text)) {
-    pass('form.html: チェック状態に応じたdisabled切替ロジックを確認');
-  } else {
-    fail('form.html: disabled切替ロジックが見つからない');
-  }
+  // 同意チェックボックスは、携帯で崩れる不具合があったため使わない。送信ボタンは常に押せる状態で、ボタンの直前に同意の文を出す
+  if (!text.includes('id="privacy-consent"')) pass('form.html: 同意チェックボックスなし(携帯での不具合の原因を外した)');
+  else fail('form.html: 同意チェックボックスが残っている');
+  if (/id="assess-submit-btn"[^>]*disabled/.test(text)) fail('form.html: 送信ボタンが初期disabledのまま');
+  else pass('form.html: 送信ボタンは常に押せる');
+  if (text.includes('プライバシーポリシー</a>に同意したものとして扱います')) pass('form.html: ボタン直前に同意の文を確認');
+  else fail('form.html: 同意の文が見つからない');
+  if (!/<label><span class="req">必須<\/span> お名前/.test(text)) pass('form.html: お名前は必須ではない');
+  else fail('form.html: お名前がまだ必須になっている');
+  const reqCount = (text.match(/<label><span class="req">必須<\/span>/g) || []).length;
+  if (reqCount === 3) pass('form.html: 必須は3項目(物件種別・郵便番号・メールアドレス)');
+  else fail('form.html: 必須項目の数が想定と違う: ' + reqCount);
+  if (text.includes('class="card card-req"') && text.includes('class="card card-opt"')) pass('form.html: 必須ブロックと任意ブロックが分かれている');
+  else fail('form.html: 必須ブロック・任意ブロックが見つからない');
   if (text.includes('不動産鑑定士による不動産鑑定評価書ではなく')) {
     pass('form.html: AI査定免責文を確認');
   } else {

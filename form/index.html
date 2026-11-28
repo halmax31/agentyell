@@ -107,8 +107,19 @@ a{ color:inherit; text-decoration:none; }
 .field{ margin-bottom:13px; }
 .field:last-child{ margin-bottom:0; }
 label{ display:flex; align-items:center; gap:5px; font-size:11px; font-weight:500; color:var(--muted); margin-bottom:4px; }
-.req{ color:var(--pink); font-size:10px; }
-.opt{ font-size:9px; background:#f0f0f4; color:var(--muted); padding:1px 5px; border-radius:3px; }
+.req{ background:var(--pink); color:#fff; font-size:10px; font-weight:700; padding:1px 6px; border-radius:3px; line-height:1.5; }
+.opt{ font-size:10px; background:#e9edf6; color:var(--muted); padding:1px 6px; border-radius:3px; line-height:1.5; }
+/* 必須ブロックと任意ブロックを分ける */
+.card-req{ border:1.5px solid var(--pink); }
+.card-opt{ background:#fafbfe; border:1px dashed #b9c3d9; }
+.sec-badge{ margin-left:auto; font-size:10px; font-weight:700; padding:2px 9px; border-radius:10px; }
+.sec-badge.req{ background:var(--pink); color:#fff; }
+.sec-badge.opt{ background:#e9edf6; color:var(--muted); }
+.req-lead{ font-size:12px; color:var(--navy-d); background:#fff; border:1px solid var(--border); border-left:3px solid var(--pink); border-radius:8px; padding:9px 12px; margin-bottom:10px; line-height:1.7; }
+.opt-lead{ font-size:11px; color:var(--muted); margin:-4px 0 12px; line-height:1.6; }
+.contact-opt.hide{ display:none; }
+.consent-note{ text-align:center; font-size:11px; color:var(--muted); margin-top:14px; line-height:1.6; }
+.consent-note a{ color:var(--navy); text-decoration:underline; }
 .hint{ font-size:10px; color:var(--light); margin-top:3px; line-height:1.4; }
 
 input, select{ 
@@ -275,10 +286,12 @@ select{
       </div>
     </div>
 
-    <div class="card">
-      <div class="sec-title">基本情報</div>
+    <div class="req-lead">必須は<b>3つだけ</b>（物件種別・郵便番号・メールアドレス）です。メールで受け取らない場合は2つです。そのほかは、すべて任意です。</div>
 
-      <!-- 物件種別 -->
+    <!-- 必須項目（ここだけで査定できます） -->
+    <div class="card card-req">
+      <div class="sec-title">必須項目<span class="sec-badge req">この3つだけ</span></div>
+
       <div class="field">
         <label><span class="req">必須</span> 物件種別</label>
         <select id="f-type" onchange="updatePrec()">
@@ -292,35 +305,50 @@ select{
         </select>
       </div>
 
-      <!-- 郵便番号検索 -->
       <div class="field">
         <label><span class="req">必須</span> 郵便番号（7桁）</label>
         <div class="zip-row">
-          <input type="text" id="f-zip" placeholder="123-4567" maxlength="8" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9-]/g,'')">
+          <input type="text" id="f-zip" placeholder="123-4567" maxlength="8" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9-]/g,'');if(this.value.replace(/-/g,'').length===7)doZipLookup()">
           <button type="button" class="zip-btn" onclick="doZipLookup()">住所検索</button>
         </div>
         <div class="zip-msg" id="zip-msg"></div>
       </div>
 
-      <!-- 住所 -->
+      <!-- 住所検索のあとに出る（自動で入る） -->
       <div class="field" id="city-f" style="display:none;">
-        <label>市区町村</label>
+        <label>市区町村（自動）</label>
         <input type="text" id="f-city" readonly style="background:#f5f5f5;">
       </div>
 
       <div class="field" id="addr-f" style="display:none;">
-        <label>番地・その他</label>
+        <label>町名・番地（自動で入ります。番地まで入れると精度UP）</label>
         <input type="text" id="f-addr" placeholder="例：1-2-3">
       </div>
 
+      <!-- メールで受け取る（初期はオン。外すと、メールアドレスは不要） -->
+      <div class="email-toggle" id="email-toggle" onclick="toggleEmail()">
+        <div class="tcheck" id="tcheck"></div>
+        <div>
+          <div class="toggle-text">査定結果をメールで受け取る</div>
+          <div class="toggle-sub">チェックを外すと、メールアドレスは不要です（結果は画面にだけ表示されます）</div>
+        </div>
+      </div>
+
+      <div class="email-fields" id="email-fields">
+        <div class="field" style="margin-top:12px;">
+          <label><span class="req">必須</span> メールアドレス</label>
+          <input type="email" id="f-email" placeholder="example@gmail.com" onchange="updatePrec()">
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="sec-title">詳細情報</div>
+    <!-- 任意項目（未入力でも査定できます） -->
+    <div class="card card-opt">
+      <div class="sec-title">任意項目<span class="sec-badge opt">未入力でもOK</span></div>
+      <div class="opt-lead">入れるほど、結果の精度が上がります。<b>土地面積を入れると、概算額がその場で表示されます。</b></div>
 
-      <!-- 土地面積（改善版） -->
       <div class="field">
-        <label>土地面積 <span class="opt">任意</span></label>
+        <label><span class="opt">任意</span> 土地面積</label>
         <div class="two">
           <input type="number" id="f-land" placeholder="100" min="0" step="0.1" onchange="updatePrec()">
           <select id="f-land-unit" onchange="updatePrec()">
@@ -331,9 +359,8 @@ select{
         <div class="hint">単位を選択してから数値を入力してください</div>
       </div>
 
-      <!-- 建物面積（改善版） -->
       <div class="field">
-        <label>建物面積 <span class="opt">任意</span></label>
+        <label><span class="opt">任意</span> 建物面積</label>
         <div class="two">
           <input type="number" id="f-bldg" placeholder="50" min="0" step="0.1" onchange="updatePrec()">
           <select id="f-bldg-unit" onchange="updatePrec()">
@@ -344,9 +371,8 @@ select{
         <div class="hint">単位を選択してから数値を入力してください</div>
       </div>
 
-      <!-- 築年数（プルダウン化） -->
       <div class="field">
-        <label>築年数 <span class="opt">任意</span></label>
+        <label><span class="opt">任意</span> 築年数</label>
         <div class="two">
           <select id="f-age-era" onchange="updateAgeInput()">
             <option value="">選択</option>
@@ -360,9 +386,8 @@ select{
         <div class="hint">年号と年数を選択すると精度UP</div>
       </div>
 
-      <!-- 構造 -->
       <div class="field">
-        <label>建物構造 <span class="opt">任意</span></label>
+        <label><span class="opt">任意</span> 建物構造</label>
         <select id="f-struct" onchange="updatePrec()">
           <option value="">選択</option>
           <option value="木造">木造</option>
@@ -373,9 +398,8 @@ select{
         </select>
       </div>
 
-      <!-- コンディション -->
       <div class="field">
-        <label>物件状態 <span class="opt">任意</span></label>
+        <label><span class="opt">任意</span> 物件状態</label>
         <select id="f-cond" onchange="updatePrec()">
           <option value="">選択</option>
           <option value="新築">新築</option>
@@ -386,30 +410,16 @@ select{
         </select>
       </div>
 
-    </div>
-
-    <!-- メール受け取り（任意 - ユーザー選択式） -->
-    <div class="card">
-      <div class="email-toggle" id="email-toggle" onclick="toggleEmail()">
-        <div class="tcheck" id="tcheck"></div>
-        <div>
-          <div class="toggle-text">査定結果をメールで受け取る</div>
-          <div class="toggle-sub">チェックで詳細情報入力欄が表示されます</div>
-        </div>
-      </div>
-
-      <div class="email-fields" id="email-fields">
-        <div class="field" style="margin-top:12px;">
-          <label><span class="req">必須</span> お名前</label>
-          <input type="text" id="f-name" placeholder="例：山田太郎" onchange="updatePrec()">
+      <!-- ご連絡先（メールで受け取る場合だけ使う） -->
+      <div class="contact-opt" id="contact-opt">
+        <div class="field">
+          <label><span class="opt">任意</span> お名前</label>
+          <input type="text" id="f-name" placeholder="例：山田太郎" autocomplete="name" onchange="updatePrec()">
         </div>
         <div class="field">
-          <label><span class="req">必須</span> メールアドレス</label>
-          <input type="email" id="f-email" placeholder="example@gmail.com" onchange="updatePrec()">
-        </div>
-        <div class="field">
-          <label>電話番号 <span class="opt">任意</span></label>
-          <input type="tel" id="f-tel" placeholder="090-1234-5678">
+          <label><span class="opt">任意</span> 電話番号</label>
+          <input type="tel" id="f-tel" placeholder="090-1234-5678" autocomplete="tel">
+          <div class="hint">お名前・電話番号は、メールで受け取る場合のご連絡先として使います</div>
         </div>
       </div>
     </div>
@@ -431,12 +441,9 @@ select{
       <strong>✓ 完全無料</strong> ｜ <strong>売却義務なし</strong> ｜ 査定だけでもOK
     </div>
 
-    <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--muted,#666);margin-top:14px;cursor:pointer">
-      <input type="checkbox" id="privacy-consent" onchange="document.getElementById('assess-submit-btn').disabled=!this.checked">
-      <span><a href="/privacy/" target="_blank" style="color:inherit;text-decoration:underline">プライバシーポリシー</a>に同意する</span>
-    </label>
+    <div class="consent-note">「査定結果を表示」を押すと、<a href="/privacy/" target="_blank" rel="noopener">プライバシーポリシー</a>に同意したものとして扱います。</div>
 
-    <button type="button" id="assess-submit-btn" class="btn-submit" onclick="doAssess()" disabled>査定結果を表示</button>
+    <button type="button" id="assess-submit-btn" class="btn-submit" onclick="doAssess()">査定結果を表示</button>
     <div class="submit-note">※土地面積を入れると概算額が表示されます<br>入力がない場合は、担当者が個別にご連絡します</div>
 
   </div>
@@ -525,6 +532,7 @@ window.addEventListener('load',function(){
   document.getElementById('tcheck').className='tcheck';
   document.getElementById('email-toggle').className='email-toggle';
   document.getElementById('email-fields').className='email-fields';
+  document.getElementById('contact-opt').className='contact-opt';
   
   // ◆ URLクエリパラメータを解析して自動入力
   var params = new URLSearchParams(window.location.search);
@@ -633,6 +641,7 @@ function toggleEmail(){
   document.getElementById('tcheck').className='tcheck'+(emailMode?'':' off');
   document.getElementById('email-toggle').className='email-toggle'+(emailMode?'':' off');
   document.getElementById('email-fields').className='email-fields'+(emailMode?'':' hide');
+  document.getElementById('contact-opt').className='contact-opt'+(emailMode?'':' hide');
 }
 
 // 築年数変換（プルダウン対応 → 数字のみで統一）
@@ -671,10 +680,10 @@ function doAssess(){
   
   // メール受取は必須ではない（emailModeがOFFでも査定可能）
   if(emailMode){
-    var nm=document.getElementById('f-name').value.trim();
+    // お名前・電話番号は任意。メールアドレスだけが必須
     var em=document.getElementById('f-email').value.trim();
-    if(!nm){alert('お名前を入力してください');return;}
-    if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('正しいメールアドレスを入力してください');return;}
+    if(!em){alert('メールアドレスを入力してください（メールで受け取らない場合は、「査定結果をメールで受け取る」のチェックを外してください）');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('正しいメールアドレスを入力してください');return;}
   }
   
   var cityParts=city.match(/^(.*?[市区町村])(.*)/)||[city,city,''];
@@ -696,7 +705,7 @@ function doAssess(){
     condition:document.getElementById('f-cond').value||null,
     precision_score:precScore,
     is_inquiry:emailMode,
-    user_name:emailMode?document.getElementById('f-name').value.trim():null,
+    user_name:emailMode?(document.getElementById('f-name').value.trim()||null):null,
     user_email:emailMode?document.getElementById('f-email').value.trim():null,
     user_phone:emailMode?(document.getElementById('f-tel').value.trim()||null):null,
     property_address:emailMode?((city+' '+addr).trim()):null
