@@ -151,7 +151,7 @@ section('6. form.html: 同意チェックボックス・免責文(静的チェ�
   } else {
     fail('form.html: disabled切替ロジックが見つからない');
   }
-  if (text.includes('不動産鑑定評価法に基づく不動産鑑定評価書ではなく')) {
+  if (text.includes('不動産鑑定士による不動産鑑定評価書ではなく')) {
     pass('form.html: AI査定免責文を確認');
   } else {
     fail('form.html: AI査定免責文が見つからない');

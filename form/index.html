@@ -8,18 +8,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AI不動産査定(無料) | 川西市・猪名川町ほか兵庫・大阪・京都・奈良対応 | AGEnt-YeLL</title>
-<meta name="description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。住所だけでも必ず概算額を提示。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
+<meta name="description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。土地面積を入れると概算額を表示（出せない場合は担当者が個別にご連絡）。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://agentyell.jp/form/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://agentyell.jp/form/">
 <meta property="og:title" content="AI不動産査定(無料) | 川西市・猪名川町ほか兵庫・大阪・京都・奈良対応 | AGEnt-YeLL">
-<meta property="og:description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。住所だけでも必ず概算額を提示。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
+<meta property="og:description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。土地面積を入れると概算額を表示（出せない場合は担当者が個別にご連絡）。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
 <meta property="og:image" content="https://agentyell.jp/assets/og.png">
 <meta property="og:site_name" content="AGEnt-YeLL エージェントエール">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI不動産査定(無料) | 川西市・猪名川町ほか兵庫・大阪・京都・奈良対応 | AGEnt-YeLL">
-<meta name="twitter:description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。住所だけでも必ず概算額を提示。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
+<meta name="twitter:description" content="川西市・猪名川町・大阪市淀川区の不動産をAIが即時査定。土地面積を入れると概算額を表示（出せない場合は担当者が個別にご連絡）。売却義務なし・完全無料。入力情報が多いほど精度が上がります。">
 <meta name="twitter:image" content="https://agentyell.jp/assets/og.png">
 <link rel="icon" href="/assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -250,9 +250,9 @@ select{
       <span class="tag">即時診断</span>
     </div>
     <p style="font-size:12px;color:var(--muted,#666);margin-top:14px;line-height:1.8">
-      ご入力いただいた情報は、AI査定結果の作成・ご連絡のためにのみ利用します。
+      ご入力いただいた情報は、AI査定結果の作成・ご連絡、および個人を特定できない形での統計分析（サービス改善）のために利用します。
       詳しくは<a href="/privacy/" style="color:inherit;text-decoration:underline">プライバシーポリシー</a>をご確認ください。<br>
-      ※AI査定は国土交通省reinfolibの実取引データをもとにした統計的概算値です。不動産鑑定評価法に基づく不動産鑑定評価書ではなく、実際の成約価格を保証するものではありません。
+      ※AI査定は、国土交通省「不動産情報ライブラリ」の実取引データをもとにした机上査定（現地を確認しない査定）の概算値です。不動産鑑定士による不動産鑑定評価書ではなく、実際の成約価格を保証するものではありません。
     </p>
   </div>
 
@@ -261,7 +261,7 @@ select{
     <!-- 精度メーター -->
     <div class="prec-box">
       <div class="prec-label">
-        <span>入力精度</span>
+        <span>入力の充実度</span>
         <span id="prec-pct">0%</span>
       </div>
       <div class="prec-track">
@@ -437,7 +437,7 @@ select{
     </label>
 
     <button type="button" id="assess-submit-btn" class="btn-submit" onclick="doAssess()" disabled>査定結果を表示</button>
-    <div class="submit-note">※住所だけでも概算額が出ます<br>情報が増えるほど精度が上がります</div>
+    <div class="submit-note">※土地面積を入れると概算額が表示されます<br>入力がない場合は、担当者が個別にご連絡します</div>
 
   </div>
 
@@ -450,7 +450,7 @@ select{
   <!-- 結果表示 -->
   <div class="result-wrap" id="result-section">
     <div class="disclaimer">
-      この査定額はAIが算出した参考値です。正確な評価は現地確認後にお知らせします。
+      この金額は、同じ地域の取引データをもとにAIが算出した机上査定の目安（相場価格）です。不動産鑑定士による鑑定評価額ではありません。日当たり・道路との関係など個別の事情で、実際の価格は上下します。正式な査定は、現地確認のうえでお知らせします。
     </div>
 
     <div class="amount-card">
@@ -461,10 +461,13 @@ select{
       <div class="range-bars">
         <span>低</span>
         <div class="range-bar"><div class="range-bar-fill" id="r-bar"></div></div>
-        <span id="r-upper">-</span>
+        <span>高</span>
       </div>
-      <div style="text-align:right;font-size:10px;color:var(--muted);margin-top:4px;">
-        <span id="r-lower">-</span> 〜
+      <div style="text-align:center;font-size:13px;font-weight:700;margin-top:6px;">
+        目安の範囲：<span id="r-lower">-</span> 〜 <span id="r-upper">-</span>
+      </div>
+      <div style="text-align:center;font-size:10px;color:var(--muted);margin-top:4px;line-height:1.7;">
+        同じ地域の過去の取引のうち、中央の約半数が収まる価格帯です。<br>実際の価格は、この範囲の外になることもあります。
       </div>
 
       <div class="prec-score">
@@ -750,10 +753,10 @@ function showResult(data){
     var prec=data.precScore||precScore;
     document.getElementById('r-prec-fill').style.width=Math.max(5,prec)+'%';
     document.getElementById('r-prec-note').textContent=
-      prec>=80?'入力情報が充実しており、精度が高い状態です。':
-      prec>=60?'面積・築年数が揃い、比較的精度が高い状態です。':
-      prec>=40?'土地面積があるため概算を算出しました。':
-               '住所情報のみです。面積・築年数を追加すると精度が上がります。';
+      prec>=80?'入力情報が充実しています。ただし、日当たり・道路との関係など個別の事情は反映していません。':
+      prec>=60?'面積・築年数が揃っています。建物の状態などは、現地確認で反映します。':
+      prec>=40?'土地面積があるため概算を算出しました。築年数を追加すると、実際に近づきやすくなります。':
+               '住所と土地面積のみの目安です。築年数などを追加すると、実際に近づきやすくなります。';
     
     var meta='参照事例：'+data.samples+'件　/　地区：'+(data.district||'市区町村平均')+
       (data.unitPrice?'<br>㎡単価の目安：'+fmt(data.unitPrice)+'円/㎡（坪単価に換算すると約'+fmt(Math.round(data.unitPrice*3.30579))+'円/坪）':'');
